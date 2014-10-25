@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="UBlogPress.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="UBlogPressTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="UBlogPress" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="UBlogPressContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blogs" EntityType="UBlogPress.Blog" />
+          <EntitySet Name="Users" EntityType="UBlogPress.User" />
+          <EntitySet Name="Comments" EntityType="UBlogPress.Comment" />
+          <EntitySet Name="Posts" EntityType="UBlogPress.Post" />
+          <AssociationSet Name="UserBlog" Association="UBlogPress.UserBlog">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="BlogPost" Association="UBlogPress.BlogPost">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="PostComment" Association="UBlogPress.PostComment">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="CommentComment" Association="UBlogPress.CommentComment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Comment1" EntitySet="Comments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="DT_created" Type="String" Nullable="false" />
+          <Property Name="DT_updated" Type="String" Nullable="false" />
+          <Property Name="Published" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="UBlogPress.UserBlog" FromRole="Blog" ToRole="User" />
+          <NavigationProperty Name="Posts" Relationship="UBlogPress.BlogPost" FromRole="Blog" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_first" Type="String" Nullable="false" />
+          <Property Name="Name_last" Type="String" Nullable="false" />
+          <Property Name="Name_middle" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="DT_created" Type="String" Nullable="false" />
+          <Property Name="DT_updated" Type="String" Nullable="false" />
+          <Property Name="Birthday" Type="String" Nullable="false" />
+          <NavigationProperty Name="Blogs" Relationship="UBlogPress.UserBlog" FromRole="User" ToRole="Blog" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="DT_created" Type="String" Nullable="false" />
+          <Property Name="User" Type="String" Nullable="false" />
+          <Property Name="Post" Type="String" Nullable="false" />
+          <Property Name="Parent" Type="String" Nullable="false" />
+          <NavigationProperty Name="Post1" Relationship="UBlogPress.PostComment" FromRole="Comment" ToRole="Post" />
+          <NavigationProperty Name="Comments" Relationship="UBlogPress.CommentComment" FromRole="Comment" ToRole="Comment1" />
+          <NavigationProperty Name="Comment1" Relationship="UBlogPress.CommentComment" FromRole="Comment1" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="Published" Type="String" Nullable="false" />
+          <Property Name="DT_created" Type="String" Nullable="false" />
+          <Property Name="DT_updated" Type="String" Nullable="false" />
+          <Property Name="Enable_comments" Type="String" Nullable="false" />
+          <Property Name="Blog" Type="String" Nullable="false" />
+          <Property Name="User" Type="String" Nullable="false" />
+          <NavigationProperty Name="Blog1" Relationship="UBlogPress.BlogPost" FromRole="Post" ToRole="Blog" />
+          <NavigationProperty Name="Comments" Relationship="UBlogPress.PostComment" FromRole="Post" ToRole="Comment" />
+        </EntityType>
+        <Association Name="UserBlog">
+          <End Type="UBlogPress.User" Role="User" Multiplicity="1" />
+          <End Type="UBlogPress.Blog" Role="Blog" Multiplicity="1" />
+        </Association>
+        <Association Name="BlogPost">
+          <End Type="UBlogPress.Blog" Role="Blog" Multiplicity="1" />
+          <End Type="UBlogPress.Post" Role="Post" Multiplicity="*" />
+        </Association>
+        <Association Name="PostComment">
+          <End Type="UBlogPress.Post" Role="Post" Multiplicity="1" />
+          <End Type="UBlogPress.Comment" Role="Comment" Multiplicity="*" />
+        </Association>
+        <Association Name="CommentComment">
+          <End Type="UBlogPress.Comment" Role="Comment" Multiplicity="1" />
+          <End Type="UBlogPress.Comment" Role="Comment1" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="UBlogPress" />
+        <Alias Key="Target" Value="UBlogPress.Store" />
+        <EntityContainerMapping CdmEntityContainer="UBlogPressContainer" StorageEntityContainer="UBlogPressTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
