@@ -39,7 +39,6 @@ namespace UBlogPress.Controllers
             }
         }
 
-        // test
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
