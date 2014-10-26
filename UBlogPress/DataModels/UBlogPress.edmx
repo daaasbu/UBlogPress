@@ -36,59 +36,55 @@
         </EntityContainer>
         <EntityType Name="Blog">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="BlogID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="DT_created" Type="String" Nullable="false" />
-          <Property Name="DT_updated" Type="String" Nullable="false" />
+          <Property Name="DT_created_blog" Type="String" Nullable="false" />
+          <Property Name="DT_updated_blog" Type="String" Nullable="false" />
           <Property Name="Published" Type="String" Nullable="false" />
           <NavigationProperty Name="User" Relationship="UBlogPress.UserBlog" FromRole="Blog" ToRole="User" />
           <NavigationProperty Name="Posts" Relationship="UBlogPress.BlogPost" FromRole="Blog" ToRole="Post" />
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name_first" Type="String" Nullable="false" />
           <Property Name="Name_last" Type="String" Nullable="false" />
           <Property Name="Name_middle" Type="String" Nullable="false" />
           <Property Name="Email" Type="String" Nullable="false" />
           <Property Name="Login" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
-          <Property Name="DT_created" Type="String" Nullable="false" />
-          <Property Name="DT_updated" Type="String" Nullable="false" />
+          <Property Name="DT_created_user" Type="String" Nullable="false" />
+          <Property Name="DT_updated_user" Type="String" Nullable="false" />
           <Property Name="Birthday" Type="String" Nullable="false" />
           <NavigationProperty Name="Blogs" Relationship="UBlogPress.UserBlog" FromRole="User" ToRole="Blog" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="CommentID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Content" Type="String" Nullable="false" />
-          <Property Name="DT_created" Type="String" Nullable="false" />
-          <Property Name="User" Type="String" Nullable="false" />
-          <Property Name="Post" Type="String" Nullable="false" />
-          <Property Name="Parent" Type="String" Nullable="false" />
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content_comment" Type="String" Nullable="false" />
+          <Property Name="DT_created_comment" Type="String" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" />
           <NavigationProperty Name="Post1" Relationship="UBlogPress.PostComment" FromRole="Comment" ToRole="Post" />
           <NavigationProperty Name="Comments" Relationship="UBlogPress.CommentComment" FromRole="Comment" ToRole="Comment1" />
           <NavigationProperty Name="Comment1" Relationship="UBlogPress.CommentComment" FromRole="Comment1" ToRole="Comment" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="PostID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" />
-          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="Content_post" Type="String" Nullable="false" />
           <Property Name="Published" Type="String" Nullable="false" />
-          <Property Name="DT_created" Type="String" Nullable="false" />
-          <Property Name="DT_updated" Type="String" Nullable="false" />
+          <Property Name="DT_created_post" Type="String" Nullable="false" />
+          <Property Name="DT_updated_post" Type="String" Nullable="false" />
           <Property Name="Enable_comments" Type="String" Nullable="false" />
-          <Property Name="Blog" Type="String" Nullable="false" />
-          <Property Name="User" Type="String" Nullable="false" />
           <NavigationProperty Name="Blog1" Relationship="UBlogPress.BlogPost" FromRole="Post" ToRole="Blog" />
           <NavigationProperty Name="Comments" Relationship="UBlogPress.PostComment" FromRole="Post" ToRole="Comment" />
         </EntityType>
