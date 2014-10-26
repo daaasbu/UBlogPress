@@ -45,6 +45,7 @@
           <Property Name="Published" Type="String" Nullable="false" />
           <NavigationProperty Name="User" Relationship="UBlogPress.UserBlog" FromRole="Blog" ToRole="User" />
           <NavigationProperty Name="Posts" Relationship="UBlogPress.BlogPost" FromRole="Blog" ToRole="Post" />
+          <Property Name="UserID" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -73,6 +74,8 @@
           <NavigationProperty Name="Post1" Relationship="UBlogPress.PostComment" FromRole="Comment" ToRole="Post" />
           <NavigationProperty Name="Comments" Relationship="UBlogPress.CommentComment" FromRole="Comment" ToRole="Comment1" />
           <NavigationProperty Name="Comment1" Relationship="UBlogPress.CommentComment" FromRole="Comment1" ToRole="Comment" />
+          <Property Name="PostID" Type="String" Nullable="false" />
+          <Property Name="Parent" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -87,6 +90,7 @@
           <Property Name="Enable_comments" Type="String" Nullable="false" />
           <NavigationProperty Name="Blog1" Relationship="UBlogPress.BlogPost" FromRole="Post" ToRole="Blog" />
           <NavigationProperty Name="Comments" Relationship="UBlogPress.PostComment" FromRole="Post" ToRole="Comment" />
+          <Property Name="BlogID" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="UserBlog">
           <End Type="UBlogPress.User" Role="User" Multiplicity="1" />
