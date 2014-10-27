@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="ApplicationDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="ApplicationDataModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ApplicationDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ApplicationDataModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blogs" EntityType="ApplicationDataModel.Blog" />
+          <EntitySet Name="Users" EntityType="ApplicationDataModel.User" />
+          <EntitySet Name="Posts" EntityType="ApplicationDataModel.Post" />
+          <EntitySet Name="Comments" EntityType="ApplicationDataModel.Comment" />
+          <EntitySet Name="Tags" EntityType="ApplicationDataModel.Tag" />
+          <AssociationSet Name="UserBlog" Association="ApplicationDataModel.UserBlog">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="BlogPost" Association="ApplicationDataModel.BlogPost">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="PostTag" Association="ApplicationDataModel.PostTag">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="PostComment" Association="ApplicationDataModel.PostComment">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="CommentComment" Association="ApplicationDataModel.CommentComment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Comment1" EntitySet="Comments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameBlog" Type="String" Nullable="false" />
+          <Property Name="OffsetTMZ" Type="DateTimeOffset" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ApplicationDataModel.UserBlog" FromRole="Blog" ToRole="User" />
+          <NavigationProperty Name="Posts" Relationship="ApplicationDataModel.BlogPost" FromRole="Blog" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Blog" Relationship="ApplicationDataModel.UserBlog" FromRole="User" ToRole="Blog" />
+          <Property Name="NameLast" Type="String" Nullable="false" />
+          <Property Name="NameFirst" Type="String" Nullable="false" />
+          <Property Name="NameMiddle" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Role" Type="String" Nullable="false" />
+          <Property Name="DTcreateduser" Type="DateTime" Nullable="false" />
+          <Property Name="DTupdateduser" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="ContentPost" Type="String" Nullable="false" />
+          <Property Name="Published" Type="DateTime" Nullable="false" />
+          <Property Name="DTcreatedpost" Type="DateTime" Nullable="false" />
+          <Property Name="DTupdatedpost" Type="DateTime" Nullable="false" />
+          <Property Name="EnabledComment" Type="Boolean" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Blog" Relationship="ApplicationDataModel.BlogPost" FromRole="Post" ToRole="Blog" />
+          <NavigationProperty Name="Tags" Relationship="ApplicationDataModel.PostTag" FromRole="Post" ToRole="Tag" />
+          <NavigationProperty Name="Comments" Relationship="ApplicationDataModel.PostComment" FromRole="Post" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentComment" Type="String" Nullable="false" />
+          <Property Name="DTcreatedcomment" Type="DateTime" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="ApplicationDataModel.PostComment" FromRole="Comment" ToRole="Post" />
+          <NavigationProperty Name="Comments" Relationship="ApplicationDataModel.CommentComment" FromRole="Comment" ToRole="Comment1" />
+          <NavigationProperty Name="ParentComment" Relationship="ApplicationDataModel.PostComment" FromRole="Comment" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameTag" Type="String" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="ApplicationDataModel.PostTag" FromRole="Tag" ToRole="Post" />
+        </EntityType>
+        <Association Name="UserBlog">
+          <End Type="ApplicationDataModel.User" Role="User" Multiplicity="1" />
+          <End Type="ApplicationDataModel.Blog" Role="Blog" Multiplicity="1" />
+        </Association>
+        <Association Name="BlogPost">
+          <End Type="ApplicationDataModel.Blog" Role="Blog" Multiplicity="1" />
+          <End Type="ApplicationDataModel.Post" Role="Post" Multiplicity="*" />
+        </Association>
+        <Association Name="PostTag">
+          <End Type="ApplicationDataModel.Post" Role="Post" Multiplicity="1" />
+          <End Type="ApplicationDataModel.Tag" Role="Tag" Multiplicity="*" />
+        </Association>
+        <Association Name="PostComment">
+          <End Type="ApplicationDataModel.Post" Role="Post" Multiplicity="0..1" />
+          <End Type="ApplicationDataModel.Comment" Role="Comment" Multiplicity="*" />
+        </Association>
+        <Association Name="CommentComment">
+          <End Type="ApplicationDataModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="ApplicationDataModel.Comment" Role="Comment1" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="ApplicationDataModel" />
+        <Alias Key="Target" Value="ApplicationDataModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="ApplicationDataModelContainer" StorageEntityContainer="ApplicationDataModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
