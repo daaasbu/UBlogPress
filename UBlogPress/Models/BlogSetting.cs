@@ -7,11 +7,11 @@ namespace UBlogPress.Models
 {
     public class BlogSetting
     {
-        public int IdBlog { get; set; }
+        public int BlogId { get; set; }
 
-        public string NameBlogSetting { get; set; }
+        public string Name { get; set; }
 
-        public string DataBlogSetting { get; set; }
+        public string Data { get; set; }
 
         //make_blog_setting()
 

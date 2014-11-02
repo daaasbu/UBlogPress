@@ -7,9 +7,9 @@ namespace UBlogPress.Models
 {
     public class PostSetting
     {
-        public int IdPost { get; set; }
+        public int PostId { get; set; }
 
-        public string NamePostSetting { get; set; }
+        public string Name { get; set; }
 
         //make_post_setting()
 

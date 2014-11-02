@@ -7,9 +7,9 @@ namespace UBlogPress.Models
 {
     public class Role
     {
-        public int IdRole { get; set; }
+        public int Id { get; set; }
 
-        public string NameRold { get; set; }
+        public string Name { get; set; }
 
         //make_role()
 
