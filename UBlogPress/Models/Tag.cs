@@ -7,8 +7,8 @@ namespace UBlogPress.Models
 {
     public class Tag
     {
-        public int TagID { get; set; }
-        public string NameTag { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         public virtual Post Post { get; set; }
     }
