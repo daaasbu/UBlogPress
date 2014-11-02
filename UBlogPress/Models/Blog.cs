@@ -17,8 +17,6 @@ namespace UBlogPress.Models
 
         public Boolean IsPublished { get; set; }
 
-        public Boolean HasRtlSupport { get; set; }
-
         public DateTime DtCreated { get; set; }
 
         public DateTime DtUpdated { get; set; }
