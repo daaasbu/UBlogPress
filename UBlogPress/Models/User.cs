@@ -20,5 +20,9 @@ namespace UBlogPress.Models
         
         public virtual Blog Blog { get; set; }
 
+        //create_user()
+
+        //delete_user()
+
     }
 }

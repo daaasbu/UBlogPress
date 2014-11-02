@@ -9,8 +9,12 @@ namespace UBlogPress.Models
     {
         public int IdBlog { get; set; }
 
-        public string NmBlogSetting { get; set; }
+        public string NameBlogSetting { get; set; }
 
         public string DataBlogSetting { get; set; }
+
+        //make_blog_setting()
+
+        //delete_blog_setting()
     }
 }

@@ -14,5 +14,13 @@ namespace UBlogPress.Models
 
         public virtual User User { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
+
+        public Boolean PublishedBlog { get; set; }
+
+        public Boolean RtlSupportBlog { get; set; }
+
+        public DateTime DtCreateBlog { get; set; }
+
+        public DateTime DtUpdatedBlog { get; set; }
     }
 }
