@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +9,7 @@ namespace UBlogPress.Models
 {
     public class Post
     {
+        [Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public string ContentPost { get; set; }
@@ -18,17 +21,11 @@ namespace UBlogPress.Models
         public DateTime DtAutoPublish { get; set; }
         public Boolean EnabledComment { get; set; }
         public int BlogId { get; set; }
-        public int AuthorId { get; set; }
-
-        public virtual User User { get; set; }
-        public virtual ICollection<Post> Posts { get; set; }
+        public int UserId { get; set; }
+        [Required]
+        public virtual Blog Blog { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
 
-
-        //create_post()
-
-        //delete_post()
-
-        //save_draft()
     }
 }
