@@ -1,0 +1,74 @@
+﻿@model UBlogPress.Models.Blog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.NameLast)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.NameLast)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OffsetTmz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsetTmz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPublished)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPublished)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DtCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DtCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DtUpdated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DtUpdated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
