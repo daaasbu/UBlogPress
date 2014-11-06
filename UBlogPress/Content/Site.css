@@ -3,6 +3,10 @@
     padding-bottom: 20px;
 }
 
+hr {
+    clear: both;
+}
+
 #bigLogo {
     display: block;
     margin-left: auto;
@@ -10,14 +14,16 @@
 
 }
 
-.actionButtons{
+.action_buttons {
     display: block;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
-.actionButtons * {
-    display: inline-block;
+.action_buttons * {
+    width: 30%;
 }
 
 .navbar-inverse {
@@ -41,6 +47,27 @@
     width: 300px;
     white-space: nowrap;
     float: right !important
+}
+
+#home_search_bar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: center;
+    width: 60%;
+}
+
+#home_search_bar #search_input {
+    display: inline-block;
+    max-width: 100%;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search_button {
+    display: inline-block;
 }
 
 
