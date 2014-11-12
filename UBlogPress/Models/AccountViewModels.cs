@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace UBlogPress.Models
@@ -60,6 +61,8 @@ namespace UBlogPress.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        
     }
 
     public class RegisterViewModel
@@ -68,6 +71,10 @@ namespace UBlogPress.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Desired Username")]
+        public string NameDisplay { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -79,6 +86,25 @@ namespace UBlogPress.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First name")]
+        public string NameFirst { get; set; }
+
+        [Required]
+        [Display(Name = "Middle name")]
+        public string NameMiddle { get; set; }
+
+        [Required]
+        [Display(Name = "Last name")]
+        public string NameLast { get; set; }
+        
+        [Required]
+      //  [DataType(DataType.Date)]
+        [Display(Name = "Birthday")]
+        public DateTime Birthday { get; set; }
+
+ 
     }
 
     public class ResetPasswordViewModel

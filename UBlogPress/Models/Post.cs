@@ -21,7 +21,7 @@ namespace UBlogPress.Models
         public DateTime DtAutoPublish { get; set; }
         public Boolean EnabledComment { get; set; }
         public int BlogId { get; set; }
-        public int UserId { get; set; }
+        public int ApplicationUserId { get; set; }
         [Required]
         public virtual Blog Blog { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

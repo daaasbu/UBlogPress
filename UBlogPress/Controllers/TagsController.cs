@@ -6,14 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using UBlogPress.DAL;
 using UBlogPress.Models;
 
 namespace UBlogPress.Controllers
 {
     public class TagsController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tags
         public ActionResult Index()

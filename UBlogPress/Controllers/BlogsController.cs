@@ -6,20 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using UBlogPress.DAL;
 using UBlogPress.Models;
 
 namespace UBlogPress.Controllers
 {
     public class BlogsController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Blogs
         public ActionResult Index()
         {
-            var blogs = db.Blogs.Include(b => b.User);
-            return View(blogs.ToList());
+            return View(db.Blogs.ToList());
         }
 
         // GET: Blogs/Details/5
@@ -40,7 +38,6 @@ namespace UBlogPress.Controllers
         // GET: Blogs/Create
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.Users, "Id", "NameLast");
             return View();
         }
 
@@ -49,7 +46,7 @@ namespace UBlogPress.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,OffsetTmz,IsPublished,DtCreated,DtUpdated,UserId")] Blog blog)
+        public ActionResult Create([Bind(Include = "Id,Name,OffsetTmz,IsPublished,DtCreated,DtUpdated,ApplicationUserId")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +55,6 @@ namespace UBlogPress.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(db.Users, "Id", "NameLast", blog.Id);
             return View(blog);
         }
 
@@ -74,7 +70,6 @@ namespace UBlogPress.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(db.Users, "Id", "NameLast", blog.Id);
             return View(blog);
         }
 
@@ -83,7 +78,7 @@ namespace UBlogPress.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,OffsetTmz,IsPublished,DtCreated,DtUpdated,UserId")] Blog blog)
+        public ActionResult Edit([Bind(Include = "Id,Name,OffsetTmz,IsPublished,DtCreated,DtUpdated,ApplicationUserId")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +86,6 @@ namespace UBlogPress.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(db.Users, "Id", "NameLast", blog.Id);
             return View(blog);
         }
 

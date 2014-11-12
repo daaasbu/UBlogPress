@@ -17,13 +17,15 @@ namespace UBlogPress.Models
 
         public Boolean IsPublished { get; set; }
 
+        public int TemplateChoice { get; set; }
+
         public DateTime DtCreated { get; set; }
 
         public DateTime DtUpdated { get; set; }
 
-        public int UserId { get; set; }
+        public int ApplicationUserId { get; set; }
         [Required]
-        public virtual User User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
 

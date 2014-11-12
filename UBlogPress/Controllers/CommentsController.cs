@@ -6,14 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using UBlogPress.DAL;
 using UBlogPress.Models;
 
 namespace UBlogPress.Controllers
 {
     public class CommentsController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
         public ActionResult Index()
@@ -49,7 +48,7 @@ namespace UBlogPress.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Content,DtCreated,UserId,PostId,ParentId")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,Content,DtCreated,ApplicationUserId,PostId,ParentId")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +82,7 @@ namespace UBlogPress.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Content,DtCreated,UserId,PostId,ParentId")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,Content,DtCreated,ApplicationUserId,PostId,ParentId")] Comment comment)
         {
             if (ModelState.IsValid)
             {

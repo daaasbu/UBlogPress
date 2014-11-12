@@ -8,6 +8,7 @@
 *.[Oo]bj
 *.user
 *.aps
+*.mdf
 *.pch
 *.vspscc
 *.vssscc
