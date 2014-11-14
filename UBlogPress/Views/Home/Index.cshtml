@@ -1,10 +1,11 @@
-﻿@{
-    Layout = "";
-    ViewBag.Title = "Home Page";
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated) {
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
+else
+{
+    Layout = "";
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
         </div>
         <div class="action_buttons">
             <a href="/Account/Register"><button class="btn">Register</button></a>
-            <a href="Account/Login"><button class="btn">Login</button></a>
+            <a href="/Account/Login"><button class="btn">Login</button></a>
         </div>
         <div class="form-group">
             <form id="home_search_bar" action="!!!search!!!">
@@ -40,5 +41,8 @@
     
 </body>
 </html>
+}
+
+
 
 

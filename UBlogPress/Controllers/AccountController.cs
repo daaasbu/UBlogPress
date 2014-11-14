@@ -154,6 +154,7 @@ namespace UBlogPress.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, NameFirst = model.NameFirst, NameMiddle = model.NameMiddle, NameLast = model.NameLast,Birthday = model.Birthday, NameDisplay = model.NameDisplay, DtCreated=System.DateTime.Now,DtUpdated=System.DateTime.Now,Role="User"};
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
