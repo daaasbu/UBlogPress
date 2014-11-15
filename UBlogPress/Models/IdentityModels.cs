@@ -18,6 +18,7 @@ namespace UBlogPress.Models
         public string NameMiddle { get; set; }
         public string Role { get; set; }
         public string NameDisplay { get; set; }
+        public string NameBlog { get; set; }
         public DateTime DtCreated { get; set; }
         public DateTime DtUpdated { get; set; }
         public DateTime Birthday { get; set; }

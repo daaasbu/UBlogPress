@@ -4,6 +4,7 @@
 [Tt]humbs.db
 *.DS_Store
 
+UBlogPress/App_Data/*
 #Visual Studio files
 *.[Oo]bj
 *.user
