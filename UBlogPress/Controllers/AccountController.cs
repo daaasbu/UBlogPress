@@ -154,7 +154,9 @@ namespace UBlogPress.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, NameFirst = model.NameFirst, NameMiddle = model.NameMiddle, NameLast = model.NameLast,Birthday = model.Birthday, NameDisplay = model.NameDisplay, NameBlog =model.NameBlog, DtCreated=System.DateTime.Now,DtUpdated=System.DateTime.Now,Role="User"};
-                
+               //instantiates the users blogs, and stores in the blog field.
+                var blog = new Blog { Name = user.NameBlog, ApplicationUserId = user.Id, DtCreated = DateTime.Now, DtUpdated = DateTime.Now, IsPublished = true, User = user, OffsetTmz = DateTimeOffset.Now, TemplateChoice = 1 };
+                user.Blog = blog;
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

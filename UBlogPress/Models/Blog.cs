@@ -23,7 +23,7 @@ namespace UBlogPress.Models
 
         public DateTime DtUpdated { get; set; }
 
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         [Required]
         public virtual ApplicationUser User { get; set; }
 
