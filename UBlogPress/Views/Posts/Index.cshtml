@@ -20,9 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ContentPost)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExceptPost)
-        </th>
+      
         <th>
             @Html.DisplayNameFor(model => model.Published)
         </th>
@@ -32,15 +30,11 @@
         <th>
             @Html.DisplayNameFor(model => model.DtUpdated)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DtAutoPublish)
-        </th>
+      
         <th>
             @Html.DisplayNameFor(model => model.EnabledComment)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUserId)
-        </th>
+       
         <th></th>
     </tr>
 
@@ -56,9 +50,6 @@
             @Html.DisplayFor(modelItem => item.ContentPost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ExceptPost)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Published)
         </td>
         <td>
@@ -68,13 +59,7 @@
             @Html.DisplayFor(modelItem => item.DtUpdated)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DtAutoPublish)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.EnabledComment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUserId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

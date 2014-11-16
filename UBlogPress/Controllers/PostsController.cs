@@ -1,19 +1,28 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using UBlogPress.Models;
 
 namespace UBlogPress.Controllers
 {
+    [Authorize]
     public class PostsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private ApplicationDbContext db;
+        private UserManager<ApplicationUser> manager;
+        public PostsController()
+        {
+            db = new ApplicationDbContext();
+            manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+        }
         // GET: Posts
         public ActionResult Index()
         {
@@ -48,12 +57,25 @@ namespace UBlogPress.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,ContentPost,ExceptPost,Published,DtCreated,DtUpdated,DtAutoPublish,EnabledComment,BlogId,ApplicationUserId")] Post post)
+        public async Task<ActionResult> Create
+            ([Bind(Include = "Id,Title,ContentPost,Published,EnabledComment")] Post post)
         {
+            var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
+
+
             if (ModelState.IsValid)
             {
+                
+                post.DtCreated = DateTime.Now;
+                post.DtUpdated = DateTime.Now;
+                
+                post.Blog = currentUser.Blog;
+                post.BlogId = currentUser.Blog.Id;
+                //    currentUser.Blog.Posts.Add(post);
                 db.Posts.Add(post);
+                //db.Users.
                 db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
