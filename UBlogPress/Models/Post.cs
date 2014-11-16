@@ -13,19 +13,19 @@ namespace UBlogPress.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string ContentPost { get; set; }
-        public string ExceptPost { get; set; }
+  //      public string ExceptPost { get; set; }
         public Boolean Published { get; set; }
   
         public DateTime DtCreated { get; set; }
         public DateTime DtUpdated { get; set; }
-        public DateTime DtAutoPublish { get; set; }
+    // public DateTime DtAutoPublish { get; set; }
         public Boolean EnabledComment { get; set; }
         public int BlogId { get; set; }
-        public int ApplicationUserId { get; set; }
         [Required]
         public virtual Blog Blog { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
 
     }
+
 }
