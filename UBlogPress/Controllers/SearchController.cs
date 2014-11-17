@@ -26,18 +26,31 @@ namespace UBlogPress.Controllers
 
         public ActionResult SearchUser(SearchUserModel model)
         {
-            var user = db.Users.FirstOrDefault(x => x.NameDisplay == model.NameDisplay);
-            if (user == null)
+            if (!(model.NameDisplay==null))
             {
-                ViewBag.StatusMessage = "No user found by that name";
-                return View(model);
-            }
+                var user = db.Users.FirstOrDefault(x => x.NameDisplay == model.NameDisplay);
+                if (user == null)
+                {
+                    ViewBag.StatusMessage = "No user found by that name";
+                    return View(model);
+                }
 
+                else
+                {
+                    return View("DisplayUser", user);
+                }
+            }
             else
             {
                 return View();
             }
         }
+
+        public ActionResult DisplayUser(ApplicationUser user) 
+        {
+            return View(user);
+        }
+
 
     }
 }
