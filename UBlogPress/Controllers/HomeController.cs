@@ -1,16 +1,40 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using UBlogPress.Models;
 
 namespace UBlogPress.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private ApplicationDbContext db;
+        private UserManager<ApplicationUser> manager;
+
+        public HomeController()
         {
-            return View();
+            db = new ApplicationDbContext();
+            manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+        }
+
+        public async Task<ActionResult> Index()
+        {
+            var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
+            if (currentUser == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View(currentUser.Blog.Posts);
+            }
         }
 
         public ActionResult About()
