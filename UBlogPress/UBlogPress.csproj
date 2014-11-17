@@ -276,6 +276,7 @@
     <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\MakePosts\Create.cshtml" />
     <Content Include="Views\Search\SearchUser.cshtml" />
+    <Content Include="Views\Search\DisplayUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

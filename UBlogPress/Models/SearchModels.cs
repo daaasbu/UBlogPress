@@ -17,7 +17,7 @@ namespace UBlogPress.Models
     public class SearchUserModel
     {
         [Display(Name="User Name")]
-        public string NameUser {get; set;}
+        public string NameDisplay {get; set;}
      
     }
 
