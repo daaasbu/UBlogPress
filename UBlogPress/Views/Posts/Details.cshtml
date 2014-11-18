@@ -8,27 +8,30 @@
     ViewBag.Title = "Details";
 }
 
-<div>
-    <h1>@Model.Title</h1>
-    <h2>@Model.DtUpdated</h2>
-    <div>
+<div class="post">
+    <h1 class="post_title">@Model.Title</h1>
+    <h2 class="post_date">@Model.DtUpdated</h2>
+    <div class="post_content">
         @Model.ContentPost
     </div>
   </div>
-<div>
+<div id="comments_section">
     @if (Model.Comments == null)
     {
-   <text>No Comments</text>
+        <span>No Comments</span>
     }
     else
     {
-    foreach (var comment in Model.Comments)
-    {
-    <h3>@comment.NameDisplay</h3>    
-    <p>@comment.Content</p>
+        foreach (var comment in Model.Comments)
+        {
+        <div class="comment">
+            <h3>@comment.NameDisplay</h3>    
+            <p>@comment.Content</p>
+        </div>
     }
-    <form action="~/Views/Posts/Details.cshtml" method="post">
-        <textarea id="CommentContent" rows="5" cols="300" draggable="auto"></textarea>
+    <form action="~/Views/Posts/Details.cshtml" method="post" class="input-group new_comment">
+        <textarea id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
+        <button type="submit" class="form-control btn btn-default">Submit Comment</button>
     </form>
 
     <div>
@@ -36,9 +39,6 @@
         var m = new SearchUserModel { NameDisplay = Model.Blog.User.NameDisplay };
    }
        
-        @{
-            ((SearchController)ViewContext.Controller).SearchUser(m);
-            }
     </div>
 
     }

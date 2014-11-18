@@ -79,6 +79,47 @@ textarea {
     display: inline-block;
 }
 
+.comment {
+    display: block;
+    float: right;
+}
+
+#comments_section {
+    width: 60%;
+
+}
+
+#new_comment {
+    display: block;
+    float: right;
+}
+
+.post {
+    width: 60%;
+    margin-bottom: 30px;
+}
+
+.post_title {
+    margin-bottom: 0px;
+}
+
+.post_content {
+    background-color: #EEE;
+    margin: 5px;
+    min-height: 50px;
+    padding: 10px;
+}
+
+.post_date {
+    margin: 0px 0px 0px 5px;
+    color: #808080;
+    font-size: 1em;
+}
+
+.view_comments_button {
+    margin-left: 5px;
+}
+
 
 .form-control {
     display: inline;
