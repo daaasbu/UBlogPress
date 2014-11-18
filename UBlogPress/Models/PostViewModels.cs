@@ -40,4 +40,6 @@ namespace UBlogPress.Models
         [Display(Name = "Enable User Comments")]
         public Boolean EnabledComment { get; set; }
     }
+
+  
 }

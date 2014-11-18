@@ -1,77 +1,46 @@
-﻿@model UBlogPress.Models.Post
+﻿@using UBlogPress.Models
+@using UBlogPress.Controllers
+@model UBlogPress.Models.Post
+
+
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="post">
+    <h1 class="post_title">@Model.Title</h1>
+    <h2 class="post_date">@Model.DtUpdated</h2>
+    <div class="post_content">
+        @Model.ContentPost
+    </div>
+  </div>
+<div id="comments_section">
+    @if (Model.Comments == null)
+    {
+        <span>No Comments</span>
+    }
+    else
+    {
+        foreach (var comment in Model.Comments)
+        {
+        <div class="comment">
+            <h3>@comment.NameDisplay</h3>    
+            <p>@comment.Content</p>
+        </div>
+    }
+    <form action="~/Views/Posts/Details.cshtml" method="post" class="input-group new_comment">
+        <textarea id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
+        <button type="submit" class="form-control btn btn-default">Submit Comment</button>
+    </form>
 
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Blog.Name)
-        </dt>
+    <div>
+   @{
+        var m = new SearchUserModel { NameDisplay = Model.Blog.User.NameDisplay };
+   }
+       
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Blog.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContentPost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContentPost)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Published)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Published)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DtCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DtCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DtUpdated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DtUpdated)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EnabledComment)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EnabledComment)
-        </dd>
-
-
-    </dl>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -1,47 +1,116 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated) {
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@using System.Data.Entity
+@model IEnumerable<UBlogPress.Models.Post>
 
-else
-{
-    Layout = "";
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - UBlogPress</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="container body-content">
-        <div>
-            <img id="bigLogo" src="../Content/Images/logo.png" />
-        </div>
-        <div class="action_buttons">
-            <a href="/Account/Register"><button class="btn">Register</button></a>
-            <a href="/Account/Login"><button class="btn">Login</button></a>
-        </div>
-        <div class="form-group">
-            <form id="home_search_bar" action="!!!search!!!">
-                <input type="search" class="form-control" id="search_input" placeholder="Search blogs" />
-                <button type="submit" class="btn" id="search_button"><span class="glyphicon glyphicon-search"></span></button>
-            </form>
-        </div>
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - UBlogPress</p>
-        </footer>
-    </div>
+    @if (Request.IsAuthenticated)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blog.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ContentPost)
+                </th>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    
-</body>
-</html>
-}
+                <th>
+                    @Html.DisplayNameFor(model => model.Published)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DtCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DtUpdated)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.EnabledComment)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Blog.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContentPost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Published)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DtCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DtUpdated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnabledComment)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+
+
+
+
+
+    else
+    {
+        Layout = "";
+        <!DOCTYPE HTML>
+        <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>@ViewBag.Title - UBlogPress</title>
+            @Styles.Render("~/Content/css")
+            @Scripts.Render("~/bundles/modernizr")
+        </head>
+        <body>
+            <div class="container body-content">
+                <div>
+                    <img id="bigLogo" src="../Content/Images/logo.png" />
+                </div>
+                <div class="action_buttons">
+                    <a href="/Account/Register"><button class="btn">Register</button></a>
+                    <a href="/Account/Login"><button class="btn">Login</button></a>
+                </div>
+                <div class="form-group">
+                    <form id="home_search_bar" action="!!!search!!!">
+                        <input type="search" class="form-control" id="search_input" placeholder="Search blogs" />
+                        <button type="submit" class="btn" id="search_button"><span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+                </div>
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - UBlogPress</p>
+                </footer>
+            </div>
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+
+        </body>
+    </html>
+    }
 
 
 

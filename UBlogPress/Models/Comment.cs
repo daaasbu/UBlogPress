@@ -13,7 +13,7 @@ namespace UBlogPress.Models
         public int Id { get; set; }
         public string Content { get; set; }
         public DateTime DtCreated { get; set; }
-
+        public string NameDisplay { get; set; }
         public int ApplicationUserId { get; set; } 
         public int PostId { get; set; }
         public int ParentId { get; set; }

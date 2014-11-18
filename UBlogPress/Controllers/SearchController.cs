@@ -10,45 +10,45 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using UBlogPress.Models;
-
 namespace UBlogPress.Controllers
 {
-    public class HomeController : Controller
+    public class SearchController : Controller
     {
         private ApplicationDbContext db;
         private UserManager<ApplicationUser> manager;
-
-        public HomeController()
+        public SearchController()
         {
             db = new ApplicationDbContext();
             manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 
-        public async Task<ActionResult> Index()
+
+
+        public ActionResult SearchUser(SearchUserModel model)
         {
-            var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
-            if (currentUser == null)
+            if (!(model.NameDisplay==null))
             {
-                return View();
+                var user = db.Users.FirstOrDefault(x => x.NameDisplay == model.NameDisplay);
+                if (user == null)
+                {
+                    ViewBag.StatusMessage = "No user found by that name";
+                    return View(model);
+                }
+
+                else
+                {
+                    return View("DisplayUser", user);
+                }
             }
             else
             {
-                return View(currentUser.Blog.Posts);
+                return View();
             }
         }
 
-        public ActionResult About()
+        public ActionResult DisplayUser(ApplicationUser user) 
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(user);
         }
     }
 }

@@ -53,15 +53,15 @@ namespace UBlogPress.Controllers
           
             if (ModelState.IsValid)
             {
-
+                
                 var post = new Post { DtCreated = DateTime.Now, DtUpdated = DateTime.Now, Blog = currentUser.Blog, BlogId = currentUser.Blog.Id, Title = model.Title, ContentPost = model.ContentPost, Published = model.Published };
-
+               
 
                 db.Posts.Add(post);
       
                 db.SaveChanges();
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index", "Posts");
+                return RedirectToAction("Index", "Home");
             }
 
       //      ViewBag.BlogId = new SelectList(db.Blogs, "Id", "Name", post.BlogId);
