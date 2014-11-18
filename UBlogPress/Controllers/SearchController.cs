@@ -50,7 +50,5 @@ namespace UBlogPress.Controllers
         {
             return View(user);
         }
-
-
     }
 }

@@ -15,36 +15,20 @@ else
  <h4>@Model.NameDisplay</h4>
 <h4>@Model.DtCreated</h4>
 
-
-<table class="table">
-
-    @foreach (var item in Model.Blog.Posts)
+    foreach (var post in Model.Blog.Posts)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Blog.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContentPost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Published)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DtCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DtUpdated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnabledComment)
-            </td>
-        </tr>
+        <div>
+            <h1>@post.Title</h1>
+            <h2>@post.DtUpdated</h2>
+            <div>
+                @post.ContentPost
+            </div>
+            <div>
+                @{
+        var link = "/Posts/Details/" + post.Id;
+                    }
+                <a href= @link> "details" </a>
+            </div>
+        </div>
     }
-
-</table>
-
 }
