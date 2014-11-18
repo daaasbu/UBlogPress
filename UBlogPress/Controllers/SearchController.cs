@@ -24,28 +24,32 @@ namespace UBlogPress.Controllers
 
 
 
-        public ActionResult SearchUser(SearchUserModel model)
+         [AcceptVerbs(HttpVerbs.Get)]
+        public ViewResult SearchUser()
         {
-            if (!(model.NameDisplay==null))
-            {
-                var user = db.Users.FirstOrDefault(x => x.NameDisplay == model.NameDisplay);
-                if (user == null)
-                {
-                    ViewBag.StatusMessage = "No user found by that name";
-                    return View(model);
-                }
+            return View();
+        }
 
-                else
-                {
-                    return View("DisplayUser", user);
-                }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SearchUser(string NameDisplay)
+        {
+
+            var user = db.Users.FirstOrDefault(x => x.NameDisplay == NameDisplay);
+          
+            if (user == null)
+            {
+                ViewBag.StatusMessage = "No user found by that name";
+                return View();
             }
+
             else
             {
-                return View();
+                return View("DisplayUser", user);
             }
         }
 
+
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult DisplayUser(ApplicationUser user) 
         {
             return View(user);

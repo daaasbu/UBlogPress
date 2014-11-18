@@ -33,7 +33,7 @@ namespace UBlogPress.Controllers
         // GET: Posts/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -45,6 +45,11 @@ namespace UBlogPress.Controllers
             return View(post);
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Details(string NameDisplay)
+        {
+            return View("SearchUser","Search", NameDisplay);
+        }
         // GET: Posts/Create
         public ActionResult Create()
         {

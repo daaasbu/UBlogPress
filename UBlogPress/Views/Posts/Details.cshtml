@@ -29,15 +29,17 @@
             <p>@comment.Content</p>
         </div>
     }
-    <form action="~/Views/Posts/Details.cshtml" method="post" class="input-group new_comment">
+    <form action="/Posts/Details" method="post" class="input-group new_comment">
         <textarea id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
         <button type="submit" class="form-control btn btn-default">Submit Comment</button>
     </form>
 
     <div>
-   @{
-        var m = new SearchUserModel { NameDisplay = Model.Blog.User.NameDisplay };
-   }
+        <form action="/Search/SearchUser" method="post">
+            <input type="hidden" name="NameDisplay" value=@Model.Blog.User.NameDisplay />
+            <input type="submit" value="Results" />
+
+        </form>
        
     </div>
 
