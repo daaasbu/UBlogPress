@@ -7,6 +7,10 @@ hr {
     clear: both;
 }
 
+.error {
+    color: red;
+}
+
 #bigLogo {
     display: block;
     margin-left: auto;
