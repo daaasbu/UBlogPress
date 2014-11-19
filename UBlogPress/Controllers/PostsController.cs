@@ -46,13 +46,14 @@ namespace UBlogPress.Controllers
         }
 
          [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Details(string content, string userid, string postid)
+        public async Task<ActionResult> Details(string content, string userid, string postid)
         {
             int pid = Convert.ToInt32(postid);
             var u = db.Users.FirstOrDefault(user => user.Id == userid);
             var p = db.Posts.First(post => post.Id == pid);
             var comment = new Comment { ApplicationUserId = userid, Content = content, DtCreated = DateTime.Now, NameDisplay = u.NameDisplay, Post = p, PostId = p.Id};
             db.Comments.Add(comment);
+            await db.SaveChangesAsync();    
             return View(p);
 
 

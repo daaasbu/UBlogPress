@@ -24,6 +24,7 @@
     {
         foreach (var comment in Model.Comments)
         {
+  
         <div class="comment">
             <h3>@comment.NameDisplay</h3>    
             <p>@comment.Content</p>
@@ -35,7 +36,7 @@
         <input type="hidden" name="postid" value=@Model.Id>
         <button type="submit" class="form-control btn btn-default">Submit Comment</button>
     </form>
-        <span>@Model.Id</span>
+     
     <div>
         <form action="/Search/SearchUser" method="post">
             <input type="hidden" name="NameDisplay" value=@Model.Blog.User.NameDisplay />
