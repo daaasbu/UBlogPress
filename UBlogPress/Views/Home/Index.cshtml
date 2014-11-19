@@ -1,71 +1,31 @@
 ﻿@using Microsoft.AspNet.Identity
 @using System.Data.Entity
-@model IEnumerable<UBlogPress.Models.Post>
+@model UBlogPress.Models.ApplicationUser
 
     @if (Request.IsAuthenticated)
     {
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blog.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ContentPost)
-                </th>
+        <h1 class="blog_name">
+            @Model.Blog.Name
+        </h1>
+        foreach (var post in Model.Blog.Posts)
+        {
+            <div class="post">
+                <h1 class="post_title">@post.Title</h1>
+                <h2 class="post_date">Last Updated: @post.DtUpdated</h2>
+                <div class="post_content">
+                    @post.ContentPost
+                </div>
+                <div>
+                    @{
+            var link = "/Posts/Details/" + post.Id;
+                    }
+                    <a href=@link><button class="btn view_comments_button"> View Comments </button></a>
+                </div>
+            </div>
+        }
 
-                <th>
-                    @Html.DisplayNameFor(model => model.Published)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DtCreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DtUpdated)
-                </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.EnabledComment)
-                </th>
 
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Blog.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ContentPost)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Published)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DtCreated)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DtUpdated)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EnabledComment)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
-            }
-
-        </table>
     }
 
 

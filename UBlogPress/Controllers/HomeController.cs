@@ -33,7 +33,7 @@ namespace UBlogPress.Controllers
             }
             else
             {
-                return View(currentUser.Blog.Posts);
+                return View(currentUser);
             }
         }
 

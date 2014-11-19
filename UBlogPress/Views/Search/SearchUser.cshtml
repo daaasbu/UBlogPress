@@ -7,10 +7,10 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <h1>Search for Blogs</h1>
     <form action="~/Views/Search/SearchUser.cshtml" method="post">
-        <input type="text" name="NameDisplay" /> 
-        <input type="submit" value="Search" />
-
+        <input type="text" name="NameDisplay" placeholder="Search by Username" class="form-control"/> 
+        <input type="submit" value="Search" class="btn"/>
     </form>
     
          <span class="error">@ViewBag.StatusMessage</span>

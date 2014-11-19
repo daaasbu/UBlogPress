@@ -37,15 +37,15 @@ textarea {
 .navbar-inverse {
   background-color: #5e8eb2;
   border: none;
-  color: #222;
+  color: #FFF;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-    color: #222;
+    color: #FFF;
 }
 
 .navbar-inverse .navbar-brand {
-    color: #222;
+    color: #FFF;
 }
 
 #search_bar {
@@ -87,6 +87,12 @@ textarea {
 #comments_section {
     width: 60%;
 
+}
+
+.blog_name {
+    font-size: 3em;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 #new_comment {
