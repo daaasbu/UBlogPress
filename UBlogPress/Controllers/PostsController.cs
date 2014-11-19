@@ -45,11 +45,20 @@ namespace UBlogPress.Controllers
             return View(post);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Details(string NameDisplay)
+         [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Details(string content, string userid, string postid)
         {
-            return View("SearchUser","Search", NameDisplay);
+            int pid = Convert.ToInt32(postid);
+            var u = db.Users.FirstOrDefault(user => user.Id == userid);
+            var p = db.Posts.First(post => post.Id == pid);
+            var comment = new Comment { ApplicationUserId = userid, Content = content, DtCreated = DateTime.Now, NameDisplay = u.NameDisplay, Post = p, PostId = p.Id};
+            db.Comments.Add(comment);
+            return View(p);
+
+
         }
+
+       
         // GET: Posts/Create
         public ActionResult Create()
         {

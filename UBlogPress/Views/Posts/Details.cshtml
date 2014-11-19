@@ -30,10 +30,12 @@
         </div>
     }
     <form action="/Posts/Details" method="post" class="input-group new_comment">
-        <textarea id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
+        <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
+        <input type="hidden" name="userid" value=@Model.Blog.User.Id>
+        <input type="hidden" name="postid" value=@Model.Id>
         <button type="submit" class="form-control btn btn-default">Submit Comment</button>
     </form>
-
+        <span>@Model.Id</span>
     <div>
         <form action="/Search/SearchUser" method="post">
             <input type="hidden" name="NameDisplay" value=@Model.Blog.User.NameDisplay />
