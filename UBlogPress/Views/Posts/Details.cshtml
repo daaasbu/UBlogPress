@@ -43,7 +43,7 @@
     <div>
         <form action="/Search/SearchUser" method="post">
      
-
+            <input type="hidden" name="NameDisplay" value="@Model.Blog.User.NameDisplay" />
             <input class="btn" type="submit" value="See all posts by @Model.Blog.User.NameDisplay" />
         </form>
     </div>
