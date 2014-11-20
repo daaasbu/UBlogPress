@@ -33,6 +33,7 @@ namespace UBlogPress.Controllers
         // GET: Posts/Details/5
         public ActionResult Details(int? id)
         {
+
              if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -46,12 +47,13 @@ namespace UBlogPress.Controllers
         }
 
          [AcceptVerbs(HttpVerbs.Post)]
-        public async Task<ActionResult> Details(string content, string userid, string postid)
+        public async Task<ActionResult> Details(string content, string postid)
         {
+            var u = await manager.FindByIdAsync(User.Identity.GetUserId());
             int pid = Convert.ToInt32(postid);
-            var u = db.Users.FirstOrDefault(user => user.Id == userid);
+            //var u = db.Users.FirstOrDefault(user => user.Id == userid);
             var p = db.Posts.First(post => post.Id == pid);
-            var comment = new Comment { ApplicationUserId = userid, Content = content, DtCreated = DateTime.Now, NameDisplay = u.NameDisplay, Post = p, PostId = p.Id};
+            var comment = new Comment { ApplicationUserId = u.Id, Content = content, DtCreated = DateTime.Now, NameDisplay = u.NameDisplay, Post = p, PostId = p.Id};
             db.Comments.Add(comment);
             await db.SaveChangesAsync();    
             return View(p);

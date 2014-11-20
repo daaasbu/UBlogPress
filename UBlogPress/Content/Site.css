@@ -81,7 +81,16 @@ textarea {
 
 .comment {
     display: block;
+    clear: both;
     float: right;
+    width: 50%;
+    background-color: #EFEFEF;
+    margin: 5px;
+}
+
+.submit_comment {
+    margin: 5px;
+    max-width: 200px;
 }
 
 #comments_section {

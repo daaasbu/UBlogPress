@@ -1,5 +1,6 @@
 ﻿@using UBlogPress.Models
 @using UBlogPress.Controllers
+@using Microsoft.AspNet.Identity
 @model UBlogPress.Models.Post
 
 
@@ -16,6 +17,7 @@
     </div>
   </div>
 <div id="comments_section">
+    <h2>Comments on this post:</h2>
     @if (Model.Comments == null)
     {
         <span>No Comments</span>
@@ -26,7 +28,8 @@
         {
   
         <div class="comment">
-            <h3>@comment.NameDisplay</h3>    
+            <h3>Comment by @comment.NameDisplay</h3>
+            <h4>On @comment.DtCreated</h4>    
             <p>@comment.Content</p>
         </div>
     }
@@ -34,16 +37,15 @@
         <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
         <input type="hidden" name="userid" value=@Model.Blog.User.Id>
         <input type="hidden" name="postid" value=@Model.Id>
-        <button type="submit" class="form-control btn btn-default">Submit Comment</button>
+        <button type="submit" class="form-control btn btn-default submit_comment">Submit Comment</button>
     </form>
      
     <div>
         <form action="/Search/SearchUser" method="post">
-            <input type="hidden" name="NameDisplay" value=@Model.Blog.User.NameDisplay />
-            <input type="submit" value="Results" />
+     
 
+            <input class="btn" type="submit" value="See all posts by @Model.Blog.User.NameDisplay" />
         </form>
-       
     </div>
 
     }

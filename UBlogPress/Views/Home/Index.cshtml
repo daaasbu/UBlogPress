@@ -7,6 +7,10 @@
         <h1 class="blog_name">
             @Model.Blog.Name
         </h1>
+        if (Model.Blog.Posts.Count() == 0)
+        {
+            <div>You haven't created any posts yet. Click "Make Post" above to start blogging!</div>
+        }
         foreach (var post in Model.Blog.Posts)
         {
             <div class="post">
