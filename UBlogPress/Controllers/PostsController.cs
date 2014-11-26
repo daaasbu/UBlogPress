@@ -49,6 +49,7 @@ namespace UBlogPress.Controllers
          [AcceptVerbs(HttpVerbs.Post)]
         public async Task<ActionResult> Details(string content, string postid)
         {
+
             var u = await manager.FindByIdAsync(User.Identity.GetUserId());
             int pid = Convert.ToInt32(postid);
             //var u = db.Users.FirstOrDefault(user => user.Id == userid);

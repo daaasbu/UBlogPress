@@ -11,7 +11,7 @@
         {
             <div>You haven't created any posts yet. Click "Make Post" above to start blogging!</div>
         }
-        foreach (var post in Model.Blog.Posts)
+        foreach (var post in Model.Blog.Posts.Reverse())
         {
             <div class="post">
                 <h1 class="post_title">@post.Title</h1>

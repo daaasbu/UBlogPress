@@ -16,7 +16,7 @@ else
 <h4>User since @Model.DtCreated</h4>
  <hr />
 
-    foreach (var post in Model.Blog.Posts)
+    foreach (var post in Model.Blog.Posts.Reverse())
     {
         <div class="post">
             <h1 class="post_title">@post.Title</h1>
