@@ -24,6 +24,11 @@ else
             <div class="post_content">
                 @post.ContentPost
             </div>
+
+            @foreach (var tag in post.Tags)
+            {
+                <span>@tag.Name</span>
+            }
             <div>
                 @{
                  var link = "/Posts/Details/" + post.Id;

@@ -24,6 +24,7 @@ namespace UBlogPress.Controllers
             manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 
+         [AcceptVerbs(HttpVerbs.Get)]
         public async Task<ActionResult> Index()
         {
             var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
@@ -33,6 +34,25 @@ namespace UBlogPress.Controllers
             }
             else
             {
+                return View(currentUser);
+            }
+        }
+
+         [AcceptVerbs(HttpVerbs.Post)]
+        public async Task<ActionResult> Index(string Name,string postid)
+        {
+            var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
+            if (currentUser == null)
+            {
+                return View();
+            }
+            else
+            {
+                var post = db.Posts.Find(Convert.ToInt32(postid));
+                var tag = new Tag {Post=post,PostId=post.Id,Name=Name};
+                db.Tags.Add(tag);
+                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return View(currentUser);
             }
         }
