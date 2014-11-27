@@ -1,0 +1,37 @@
+﻿@model IEnumerable<UBlogPress.Models.Post>
+
+    @{
+        ViewBag.Title = "DisplayPosts";
+
+    }
+
+@if (Model == null)
+{
+    <h4>No results matched your search, please try a new search.</h4>
+}
+else
+{
+
+    foreach (var post in Model)
+    {
+<div class="post">
+    <h1 class="post_title">@post.Title</h1>
+    <h2 class="post_date">Last Updated: @post.DtUpdated</h2>
+    <div class="post_content">
+        @post.ContentPost
+    </div>
+
+    @foreach (var tag in post.Tags)
+    {
+        <span>@tag.Name</span>
+    }
+    <div>
+        @{
+            var link = "/Posts/Details/" + post.Id;
+        }
+        <a href=@link><button class="btn view_comments_button"> View Comments </button></a>
+    </div>
+</div>
+    }
+}
+

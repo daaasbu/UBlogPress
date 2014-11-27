@@ -24,9 +24,17 @@ namespace UBlogPress.Controllers
             manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
         // GET: Posts
+           [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index()
         {
             var posts = db.Posts.Include(p => p.Blog);
+            return View(posts.ToList());
+        }
+
+           [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Index(IEnumerable<Post> posts)
+        {
+           
             return View(posts.ToList());
         }
 

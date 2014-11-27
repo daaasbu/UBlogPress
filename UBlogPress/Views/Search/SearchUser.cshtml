@@ -9,10 +9,15 @@
     @Html.AntiForgeryToken()
     <h1>Search for Blogs</h1>
     <form action="~/Views/Search/SearchUser.cshtml" method="post">
-        <input type="text" name="NameDisplay" placeholder="Search by Username" class="form-control"/> 
-        <input type="submit" value="Search" class="btn"/>
+    <input type="text" name="NameDisplay" placeholder="Search by Username" class="form-control"/> 
+        <br />   
+    <input type="text" name="Name" placeholder="Search by tag" class="form-control" />
+        <br />
+    <input type="text" name="DtCreated" placeholder="Search by Date" class="form-control" />
+        <br/>
+    <input type="submit" value="Search" class="btn" />   
     </form>
-    
+
          <span class="error">@ViewBag.StatusMessage</span>
         
 }

@@ -18,6 +18,11 @@ namespace UBlogPress.Models
     {
         [Display(Name="User Name")]
         public string NameDisplay {get; set;}
+        [Display(Name = "Tag")]
+        public string Name { get; set; }
+        [Display(Name = "Date")]
+        public DateTime? DtCreated { get; set; }
+     
      
     }
 
