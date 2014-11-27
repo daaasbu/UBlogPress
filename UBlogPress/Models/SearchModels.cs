@@ -16,10 +16,16 @@ namespace UBlogPress.Models
 {
     public class SearchUserModel
     {
+        
         [Display(Name="User Name")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
         public string NameDisplay {get; set;}
+
+        [StringLength(30, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         [Display(Name = "Tag")]
         public string Name { get; set; }
+
+         [DataType(DataType.Date)]
         [Display(Name = "Date")]
         public DateTime? DtCreated { get; set; }
      

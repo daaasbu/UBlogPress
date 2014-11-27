@@ -73,13 +73,17 @@ namespace UBlogPress.Models
         public string Email { get; set; }
 
         [Required]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         [Display(Name = "Desired Username")]
         public string NameDisplay { get; set; }
+
         [Required]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         [Display(Name = "Desired Blogname")]
         public string NameBlog { get; set; }
+
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -91,18 +95,21 @@ namespace UBlogPress.Models
 
         [Required]
         [Display(Name = "First name")]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         public string NameFirst { get; set; }
 
         [Required]
         [Display(Name = "Middle name")]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         public string NameMiddle { get; set; }
 
         [Required]
         [Display(Name = "Last name")]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         public string NameLast { get; set; }
         
         [Required]
-      //  [DataType(DataType.Date)]
+        [DataType(DataType.Date)]
         [Display(Name = "Birthday")]
         public DateTime Birthday { get; set; }
         
