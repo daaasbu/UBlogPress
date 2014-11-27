@@ -79,7 +79,40 @@ namespace UBlogPress.Controllers
                     }
                 }
             }
+                //User name and date given 
+            else if (model.NameDisplay != null && model.Name == null && model.DtCreated != null)
+            {
 
+                var user = db.Users.FirstOrDefault(x => x.NameDisplay == model.NameDisplay);
+
+                if (user == null)
+                {
+                    ViewBag.StatusMessage = "No user found by that name";
+                    return View();
+                }
+
+                else
+                {
+
+                    var posts = user.Blog.Posts.Where(post => post.DtCreated.Date == model.DtCreated.Value.Date);
+
+
+                    if (posts.Count() == 0)
+                    {
+                        ViewBag.StatusMessage = "No posts were found that match your criterion";
+                        return View();
+                    }
+
+                    else
+                    {
+                        return View("DisplayPosts", posts);
+                    }
+                }
+            }
+
+
+
+            //all three given
             else if (model.NameDisplay != null && model.Name != null && model.DtCreated != null)
             {
                 var user = db.Users.FirstOrDefault(x => x.NameDisplay == model.NameDisplay);
@@ -94,7 +127,7 @@ namespace UBlogPress.Controllers
                 {
                     var tags = db.Tags.Where(tag => tag.Name == model.Name && tag.Post.Blog.User.Id == user.Id).ToList();
                     var posts = tags.Select(tag => tag.Post).Where(post => post.DtCreated.Date == model.DtCreated.Value.Date);
-                    
+
 
 
                     if (posts.Count() == 0 || posts == null)
@@ -109,6 +142,69 @@ namespace UBlogPress.Controllers
                     }
                 }
             }
+            //Tag and date given
+            else if (model.NameDisplay == null && model.Name != null && model.DtCreated != null)
+            {
+
+                var tags = db.Tags.Where(tag => tag.Name == model.Name).ToList();
+                var posts = tags.Select(tag => tag.Post).Where(post => post.DtCreated.Date == model.DtCreated.Value.Date);
+
+
+
+                if (posts.Count() == 0 || posts == null)
+                {
+                    ViewBag.StatusMessage = "No posts were found that match your criterion";
+                    return View();
+                }
+
+                else
+                {
+                    return View("DisplayPosts", posts);
+                }
+            }
+            //Date given
+            else if (model.NameDisplay == null && model.Name == null && model.DtCreated != null)
+            {
+
+
+                var posts = db.Posts.ToList().Where(post => post.DtCreated.Date == model.DtCreated.Value.Date);
+
+
+
+                if (posts.Count() == 0 || posts == null)
+                {
+                    ViewBag.StatusMessage = "No posts were found that match your criterion";
+                    return View();
+                }
+
+                else
+                {
+                    return View("DisplayPosts", posts);
+                }
+            }
+            //Tag given
+            else if (model.NameDisplay == null && model.Name != null && model.DtCreated == null)
+            {
+
+                var tags = db.Tags.Where(tag => tag.Name == model.Name).ToList();
+                var posts = tags.Select(tag => tag.Post);
+
+
+
+                if (posts.Count() == 0 || posts == null)
+                {
+                    ViewBag.StatusMessage = "No posts were found that match your criterion";
+                    return View();
+                }
+
+                else
+                {
+                    return View("DisplayPosts", posts);
+                }
+            }
+
+
+
             else
             {
                 return View();
