@@ -11,7 +11,7 @@
     {
         <div>You haven't created any posts yet. Click "Make Post" above to start blogging!</div>
     }
-    foreach (var post in Model.Blog.Posts.OrderByDescending(post => post.DtCreated))
+    foreach (var post in Model.Blog.Posts.OrderByDescending(post => post.DtUpdated))
     {
         <div class="post">
             <h1 class="post_title">@post.Title</h1>
@@ -19,6 +19,13 @@
             <div class="post_content">
                 @post.ContentPost
             </div>
+            <div align="right">
+
+                @Html.ActionLink("Edit", "Edit", "Posts", new { id = post.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Posts", new { id = post.Id },null)
+
+            </div>
+
             <div>
                 @foreach (var tag in post.Tags)
                 {
