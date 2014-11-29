@@ -2,89 +2,91 @@
 @using System.Data.Entity
 @model UBlogPress.Models.ApplicationUser
 
-    @if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated)
+{
+    <h1 class="blog_name">
+        @Model.Blog.Name
+    </h1>
+    if (Model.Blog.Posts.Count() == 0)
     {
-        <h1 class="blog_name">
-            @Model.Blog.Name
-        </h1>
-        if (Model.Blog.Posts.Count() == 0)
-        {
-            <div>You haven't created any posts yet. Click "Make Post" above to start blogging!</div>
-        }
-        foreach (var post in Model.Blog.Posts.OrderByDescending(post => post.DtCreated))
-        {
-            <div class="post">
-                <h1 class="post_title">@post.Title</h1>
-                <h2 class="post_date">Last Updated: @post.DtUpdated</h2>
-                <div class="post_content">
-                    @post.ContentPost
-                </div>
-                <div>
-                    @foreach (var tag in post.Tags)
-                    {
-                        <span>@tag.Name</span>
-                    }
-                    <form method="post">
-                        <textarea name="Name" id="NewTagContent" rows="1" cols="10" placeholder="Enter tag" class="form-control"></textarea>
-                        <input type="hidden" name="postid" value=@post.Id>
-                        <button type="submit" class="form-control btn btn-default submit_comment">Add Tag</button>
-                    </form>
-                    @{
-            var link = "/Posts/Details/" + post.Id;
-                    }
+        <div>You haven't created any posts yet. Click "Make Post" above to start blogging!</div>
+    }
+    foreach (var post in Model.Blog.Posts.OrderByDescending(post => post.DtCreated))
+    {
+        <div class="post">
+            <h1 class="post_title">@post.Title</h1>
+            <h2 class="post_date">Last Updated: @post.DtUpdated</h2>
+            <div class="post_content">
+                @post.ContentPost
+            </div>
+            <div>
+                @foreach (var tag in post.Tags)
+                {
+                    <span>@tag.Name</span>
+                }
+                <form method="post">
+                    <textarea name="Name" id="NewTagContent" rows="1" cols="10" placeholder="Enter tag" class="form-control"></textarea>
+                    <input type="hidden" name="postid" value=@post.Id>
+                    <button type="submit" class="form-control btn btn-default submit_comment">Add Tag</button>
+                </form>
+                @{
+        var link = "/Posts/Details/" + post.Id;
+                }
+                @if (post.EnabledComment)
+                {
                     <a href=@link><button class="btn view_comments_button"> View Comments </button></a>
-                  
-                </div>
+                }
             </div>
-        }
-
-
-
+        </div>
     }
 
 
 
+}
 
 
-    else
-    {
-        Layout = "";
-        <!DOCTYPE HTML>
-        <html>
-        <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>@ViewBag.Title - UBlogPress</title>
-            @Styles.Render("~/Content/css")
-            @Scripts.Render("~/bundles/modernizr")
-        </head>
-        <body>
-            <div class="container body-content">
-                <div>
-                    <img id="bigLogo" src="../Content/Images/logo.png" />
-                </div>
-                <div class="action_buttons">
-                    <a href="/Account/Register"><button class="btn">Register</button></a>
-                    <a href="/Account/Login"><button class="btn">Login</button></a>
-                </div>
-                <div class="form-group">
-                    <form id="home_search_bar" action="!!!search!!!">
-                        <input type="search" class="form-control" id="search_input" placeholder="Search blogs" />
-                        <button type="submit" class="btn" id="search_button"><span class="glyphicon glyphicon-search"></span></button>
-                    </form>
-                </div>
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - UBlogPress</p>
-                </footer>
+
+
+
+else
+{
+    Layout = "";
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - UBlogPress</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="container body-content">
+            <div>
+                <img id="bigLogo" src="../Content/Images/logo.png" />
             </div>
+            <div class="action_buttons">
+                <a href="/Account/Register"><button class="btn">Register</button></a>
+                <a href="/Account/Login"><button class="btn">Login</button></a>
+            </div>
+            <div class="form-group">
+                <form id="home_search_bar" action="!!!search!!!">
+                    <input type="search" class="form-control" id="search_input" placeholder="Search blogs" />
+                    <button type="submit" class="btn" id="search_button"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+            </div>
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - UBlogPress</p>
+            </footer>
+        </div>
 
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
 
-        </body>
-    </html>
-    }
+    </body>
+</html>
+}
 
 
 
