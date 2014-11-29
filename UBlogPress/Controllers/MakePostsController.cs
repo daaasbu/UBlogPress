@@ -46,8 +46,7 @@ namespace UBlogPress.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create
-            ([Bind(Include = "Title,ContentPost,Published,EnabledComment")] CreatePostModel model)
+        public async Task<ActionResult> Create (PostViewModel model)
         {
             var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
           
