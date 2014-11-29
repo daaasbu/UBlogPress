@@ -7,14 +7,20 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using UBlogPress.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace UBlogPress.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        private ApplicationDbContext db;
+        private UserManager<ApplicationUser> manager;
+
         public ManageController()
         {
+            db = new ApplicationDbContext();
+            manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 
         public ManageController(ApplicationUserManager userManager)
@@ -311,6 +317,31 @@ namespace UBlogPress.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+
+          [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+          [AcceptVerbs(HttpVerbs.Post)]
+          public async Task<ActionResult> Delete(int sure)
+          {
+              if (sure == 1)
+              {
+                  var u = await manager.FindByIdAsync(User.Identity.GetUserId());
+                 
+                  db.Blogs.Remove(u.Blog);
+                  db.Users.Remove(u);
+                  db.SaveChanges();
+                  AuthenticationManager.SignOut();
+                  return RedirectToAction("Index", "Home");
+              }
+              else
+              {
+                  return RedirectToAction("Index");
+              }
+          }
 #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

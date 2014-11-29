@@ -10,10 +10,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using UBlogPress.Models;
 using System.ComponentModel.DataAnnotations;
-
+using System.Text.RegularExpressions;
 
 namespace UBlogPress.Models
 {
+
+
     public class SearchUserModel
     {
         
