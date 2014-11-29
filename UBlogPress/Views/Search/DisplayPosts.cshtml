@@ -12,7 +12,7 @@
 else
 {
 
-    foreach (var post in Model.OrderByDescending(post => post.DtCreated))
+    foreach (var post in Model.OrderByDescending(post => post.DtUpdated))
     {
         if (post.Published)
         {

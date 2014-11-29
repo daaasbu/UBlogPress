@@ -16,7 +16,7 @@ else
     <h4>User since @Model.DtCreated</h4>
     <hr />
 
-    foreach (var post in Model.Blog.Posts.OrderByDescending(post => post.DtCreated))
+    foreach (var post in Model.Blog.Posts.OrderByDescending(post => post.DtUpdated))
     {
         if (post.Published)
         {

@@ -132,12 +132,24 @@ namespace UBlogPress.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,ContentPost,ExceptPost,Published,DtCreated,DtUpdated,DtAutoPublish,EnabledComment,BlogId,ApplicationUserId")] Post post)
         {
-            if (ModelState.IsValid)
+            var blog = db.Blogs.Find(post.BlogId);
+            var p = db.Posts.Find(post.Id);
+            var tags = p.Tags;
+            var comments = p.Comments;
+
+            post.Comments = comments;
+            post.Blog = blog;
+            post.Tags = tags;
+            post.DtUpdated = DateTime.Now;
+            if (post.Title != "" && post.ContentPost != "")
             {
-                db.Entry(post).State = EntityState.Modified;
+                db.Posts.Remove(p);
+                db.Posts.Add(post);
+                //db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
+            
             ViewBag.BlogId = new SelectList(db.Blogs, "Id", "Name", post.BlogId);
             return View(post);
         }
@@ -165,7 +177,7 @@ namespace UBlogPress.Controllers
             Post post = db.Posts.Find(id);
             db.Posts.Remove(post);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         protected override void Dispose(bool disposing)
