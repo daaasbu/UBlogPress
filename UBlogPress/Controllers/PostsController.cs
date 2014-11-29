@@ -13,7 +13,7 @@ using UBlogPress.Models;
 
 namespace UBlogPress.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class PostsController : Controller
     {
         private ApplicationDbContext db;
@@ -62,10 +62,21 @@ namespace UBlogPress.Controllers
             int pid = Convert.ToInt32(postid);
             //var u = db.Users.FirstOrDefault(user => user.Id == userid);
             var p = db.Posts.First(post => post.Id == pid);
-            var comment = new Comment { ApplicationUserId = u.Id, Content = content, DtCreated = DateTime.Now, NameDisplay = u.NameDisplay, Post = p, PostId = p.Id};
-            db.Comments.Add(comment);
-            await db.SaveChangesAsync();    
-            return View(p);
+            if (u != null)
+            {
+                
+                var comment = new Comment { ApplicationUserId = u.Id, Content = content, DtCreated = DateTime.Now, NameDisplay = u.NameDisplay, Post = p, PostId = p.Id };
+                db.Comments.Add(comment);
+                await db.SaveChangesAsync();
+                return View(p);
+            }
+            else
+            {
+               var comment = new Comment { ApplicationUserId = "", Content = content, DtCreated = DateTime.Now, NameDisplay = "Anonymous", Post = p, PostId = p.Id };
+                db.Comments.Add(comment);
+                await db.SaveChangesAsync();
+                return View(p);
+            }
 
 
         }
