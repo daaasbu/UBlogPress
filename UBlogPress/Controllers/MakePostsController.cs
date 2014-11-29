@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -52,8 +53,12 @@ namespace UBlogPress.Controllers
           
             if (ModelState.IsValid)
             {
-                
-                var post = new Post { DtCreated = DateTime.Now, DtUpdated = DateTime.Now, Blog = currentUser.Blog, BlogId = currentUser.Blog.Id, Title = model.Title, ContentPost = model.ContentPost, Published = model.Published, EnabledComment = model.EnabledComment };
+
+                var post = Mapper.Map<Post>(model);
+                post.DtCreated = DateTime.Now;
+                post.DtUpdated = DateTime.Now;
+                post.Blog = currentUser.Blog;
+                          
                
 
                 db.Posts.Add(post);
