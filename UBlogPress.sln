@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UBlogPress", "UBlogPress\UBlogPress.csproj", "{B7E29E89-FAC2-4229-923C-9323F6C11CC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UBlogPress.Test", "UBlogPressTests\UBlogPress.Test.csproj", "{08AD4C11-7FB9-491E-A378-EE9FA46CA046}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B7E29E89-FAC2-4229-923C-9323F6C11CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7E29E89-FAC2-4229-923C-9323F6C11CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7E29E89-FAC2-4229-923C-9323F6C11CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08AD4C11-7FB9-491E-A378-EE9FA46CA046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08AD4C11-7FB9-491E-A378-EE9FA46CA046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08AD4C11-7FB9-491E-A378-EE9FA46CA046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08AD4C11-7FB9-491E-A378-EE9FA46CA046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
