@@ -131,6 +131,15 @@ textarea {
     font-size: 1em;
 }
 
+.tag {
+    padding: 2px;
+    background-color: #E5E5E5;
+    border-width: 1px;
+    border-color: #CCC;
+    border-style: solid;
+    border-radius: 3px;
+}
+
 .view_comments_button {
     margin-left: 5px;
 }

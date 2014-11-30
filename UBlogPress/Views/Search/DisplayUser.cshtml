@@ -25,13 +25,15 @@ else
                 <h1 class="post_title">@post.Title</h1>
                 <h2 class="post_date">Last Updated: @post.DtUpdated</h2>
                 <div class="post_content">
-                    @post.ContentPost
+                    @Html.Raw(post.ContentPost)
                 </div>
-
+                <div>
+                    Tags: 
                 @foreach (var tag in post.Tags)
                 {
-                    <span>@tag.Name</span>
+                    <span class="tag">@tag.Name</span>
                 }
+                </div>
                 @if (post.EnabledComment)
                 {
                     <div>

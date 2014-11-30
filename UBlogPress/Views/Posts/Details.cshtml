@@ -8,19 +8,26 @@
     ViewBag.Title = "Details";
 }
 
+
 @if (User.Identity.Name != null)
 {
+
     <div class="post">
         <h1 class="post_title">@Model.Title</h1>
         <h2 class="post_date">@Model.DtUpdated</h2>
         <div class="post_content">
-            @Model.ContentPost
+            @Html.Raw(Model.ContentPost)
         </div>
     </div>
-    foreach (var tag in Model.Tags)
-    {
-        <span>@tag.Name</span>
-    }
+
+    <div>
+        Tags:
+        @foreach (var tag in Model.Tags)
+        {
+            <span class="tag">@tag.Name</span>
+        }
+    </div>
+
 
     <div id="comments_section">
         @if (Model.Comments == null)
@@ -55,14 +62,14 @@
                     <p>@comment.Content</p>
                     <span>
                         @if (comment.Post.Blog.ApplicationUserId == User.Identity.GetUserId())
-                    {
-                        @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.Id }, null)
-                    }
-                    else
-                    {
+                        {
+                            @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.Id }, null)
+                        }
+                        else
+                        {
 
-                    }
-                                  </span>
+                        }
+                    </span>
                 </div>
             }
 

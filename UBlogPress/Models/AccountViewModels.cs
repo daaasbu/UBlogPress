@@ -79,7 +79,7 @@ namespace UBlogPress.Models
 
         [Required]
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
-        [Display(Name = "Desired Blogname")]
+        [Display(Name = "Desired Blog name")]
         public string NameBlog { get; set; }
 
         [Required]
@@ -98,7 +98,6 @@ namespace UBlogPress.Models
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         public string NameFirst { get; set; }
 
-        [Required]
         [Display(Name = "Middle name")]
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         public string NameMiddle { get; set; }

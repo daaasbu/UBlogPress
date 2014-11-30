@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -46,15 +47,18 @@ namespace UBlogPress.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create
-            ([Bind(Include = "Title,ContentPost,Published,EnabledComment")] CreatePostModel model)
+        public async Task<ActionResult> Create (PostViewModel model)
         {
             var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
           
             if (ModelState.IsValid)
             {
-                
-                var post = new Post { DtCreated = DateTime.Now, DtUpdated = DateTime.Now, Blog = currentUser.Blog, BlogId = currentUser.Blog.Id, Title = model.Title, ContentPost = model.ContentPost, Published = model.Published, EnabledComment = model.EnabledComment };
+
+                var post = Mapper.Map<Post>(model);
+                post.DtCreated = DateTime.Now;
+                post.DtUpdated = DateTime.Now;
+                post.Blog = currentUser.Blog;
+                          
                
 
                 db.Posts.Add(post);
