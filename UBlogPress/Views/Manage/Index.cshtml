@@ -9,6 +9,24 @@
     <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>Email:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Change your email", "ChangeEmail")
+            ]
+        </dd>
+        <dt>Username:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Change your username", "ChangeUsername")
+            ]
+        </dd>
+        <dt>Blog name:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Change your Blog name", "ChangeBlogname")
+            ]
+        </dd>
         <dt>Password:</dt>
         <dd>
             [
@@ -22,10 +40,12 @@
             }
             ]
         </dd>
-        <dt>Delete:</dt>
-        [
-        @Html.ActionLink("Delete your account", "Delete")
-        ]
- 
+        <dt>Account:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Delete your account", "Delete")
+            ]
+        </dd>
+
     </dl>
 </div>

@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using UBlogPress.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace UBlogPress.Controllers
 {
@@ -317,6 +318,29 @@ namespace UBlogPress.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+         [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ChangeEmail()
+        {
+            return View();
+        }
+
+         [AcceptVerbs(HttpVerbs.Post)]
+         public async Task<ActionResult> ChangeEmail(ChangeEmailViewModel model)
+         {
+             if (ModelState.IsValid)
+             {
+                 var u = await manager.FindByIdAsync(User.Identity.GetUserId());
+                 u.UserName = model.NewEmail;
+                 u.Email = model.NewEmail;
+                
+                 db.Entry(u).State = EntityState.Modified;
+                 db.SaveChanges();
+                 AuthenticationManager.SignOut();
+                 return RedirectToAction("Index", "Home");
+             }
+             return View(model);
+         }   
+       
 
           [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Delete()
