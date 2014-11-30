@@ -24,10 +24,13 @@ else
                     @Html.Raw(post.ContentPost)
                 </div>
 
-                @foreach (var tag in post.Tags)
-                {
-                    <span>@tag.Name</span>
-                }
+                <div>
+                    Tags:
+                    @foreach (var tag in post.Tags)
+                    {
+                        <span class="tag">@tag.Name</span>
+                    }
+                </div>
                 @if (post.EnabledComment)
                 {
                     <div>
