@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using UBlogPress.Models;
 using Assert = NUnit.Framework.Assert;
 
-namespace UBlogPress.Test
+namespace UBlogPress.Test.TestModels
 {
     [TestClass]
     public class TestManageViewModels

@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace UBlogPress.Models
 {
-
     public class PostViewModel
     {
         [Required]
@@ -29,7 +28,4 @@ namespace UBlogPress.Models
         [Display(Name = "Enable User Comments")]
         public Boolean EnabledComment { get; set; }
     }
-
-
-  
 }

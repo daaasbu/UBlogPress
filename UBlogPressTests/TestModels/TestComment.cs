@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Dynamic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using UBlogPress.Models;
 using Assert = NUnit.Framework.Assert;
 
-
-namespace UBlogPress.Test
+namespace UBlogPress.Test.TestModels
 {
     [TestFixture]
     public class TestComment

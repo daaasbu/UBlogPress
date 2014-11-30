@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Dynamic;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using UBlogPress.Models;
 using Assert = NUnit.Framework.Assert;
 
-namespace UBlogPress.Test
+namespace UBlogPress.Test.TestModels
 {
     [TestFixture]
     public class TestIdentityModels
@@ -15,7 +11,6 @@ namespace UBlogPress.Test
         private ApplicationUser _applicationUser;
         private ApplicationDbContext _applicationDbContext;
       
-
         [SetUp] 
         public void Init()
         {
