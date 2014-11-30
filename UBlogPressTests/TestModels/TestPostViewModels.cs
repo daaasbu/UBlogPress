@@ -28,7 +28,7 @@ namespace UBlogPress.Test.TestModels
             Assert.AreEqual(_postViewModel.Title, "title");
             Assert.AreEqual(_postViewModel.ContentPost, "somecontent");
             Assert.AreEqual(_postViewModel.Published, true);
-            Assert.AreEqual(_postViewModel.EnabledComment, true);
+            Assert.AreNotEqual(_postViewModel.EnabledComment, true);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using UBlogPress.Models;
 using Assert = NUnit.Framework.Assert;
@@ -24,15 +26,8 @@ namespace UBlogPress.Test.TestModels
             _index = new IndexViewModel()
             {
                 HasPassword = false,
-                //public IList<UserLoginInfo> Logins { get; set; }
                 TwoFactor = true,
                 BrowserRemembered = true
-            };
-
-            _manageLogins = new ManageLoginsViewModel()
-            {
-                //public IList<UserLoginInfo> CurrentLogins { get; set; }
-                //public IList<AuthenticationDescription> OtherLogins { get; set; }
             };
 
             _factor = new FactorViewModel()
@@ -73,7 +68,6 @@ namespace UBlogPress.Test.TestModels
             _configureTwoFactor = new ConfigureTwoFactorViewModel()
             {
                 SelectedProvider = "selprov"
-                 //public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
             };
 
         }
@@ -84,13 +78,6 @@ namespace UBlogPress.Test.TestModels
             Assert.AreEqual(_index.HasPassword, false);
             Assert.AreEqual(_index.TwoFactor, true);
             Assert.AreEqual(_index.BrowserRemembered, true);
-        }
-
-        [Test]
-        public void ManageLoginsViewModelTest()
-        {
-            //public IList<UserLoginInfo> CurrentLogins { get; set; }
-            //public IList<AuthenticationDescription> OtherLogins { get; set; }
         }
 
         [Test]
@@ -137,7 +124,6 @@ namespace UBlogPress.Test.TestModels
         public void ConfigureTwoFactorViewModelTest()
         {
             Assert.AreEqual(_configureTwoFactor.SelectedProvider, "selprov");
-            //public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
         }
     }
 }

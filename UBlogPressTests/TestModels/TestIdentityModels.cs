@@ -28,7 +28,6 @@ namespace UBlogPress.Test.TestModels
                 DtUpdated = new DateTime(2014,1,30),
                 Birthday = new DateTime(1991, 7, 21),
                 BlogId = 123
-                // public virtual Blog Blog { get; set; }
             };
 
 

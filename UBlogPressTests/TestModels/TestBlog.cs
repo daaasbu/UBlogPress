@@ -19,10 +19,11 @@ namespace UBlogPress.Test.TestModels
                 Id = 123,
                 Name = "Marty McFly",
                 OffsetTmz = new DateTimeOffset(1985,10,26,1,21,0,new TimeSpan(-6,0,0)),
-                ApplicationUserId = "1776",
                 IsPublished = true,
+                TemplateChoice = 1,
                 DtCreated = new DateTime(2014, 2, 3),
-                DtUpdated = new DateTime(2014, 11, 26)
+                DtUpdated = new DateTime(2014, 11, 26),
+                ApplicationUserId = "1776"
             };
         }
 
@@ -45,12 +46,6 @@ namespace UBlogPress.Test.TestModels
         }
                
         [Test]
-        public void ApplicationUserIdTest()
-        {
-            Assert.AreEqual(_blog.ApplicationUserId, "1776");
-        }
-
-        [Test]
         public void IsPublishedTest()
         {
             Assert.AreEqual(_blog.IsPublished, true);
@@ -66,6 +61,12 @@ namespace UBlogPress.Test.TestModels
         public void DtUpdatedTest()
         {
             Assert.AreEqual(_blog.DtUpdated, new DateTime(2014, 11, 26));
-        } 
+        }
+
+        [Test]
+        public void ApplicationUserIdTest()
+        {
+            Assert.AreEqual(_blog.ApplicationUserId, "1776");
+        }
     }
 }

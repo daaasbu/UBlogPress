@@ -41,11 +41,6 @@ namespace UBlogPress.Test.TestModels
                 RememberMe = false
             };
 
-            //_sendCode.Providers = new ICollection<System.Web.Mvc.SelectListItem>
-            //{
-            //    new SelectListItem()
-            //};
-
             _verifyCode = new VerifyCodeViewModel()
             {
                 Provider = "prov",
@@ -112,8 +107,7 @@ namespace UBlogPress.Test.TestModels
         {
             Assert.AreEqual(_sendCode.SelectedProvider, "provider");
             Assert.AreEqual(_sendCode.ReturnUrl, "returnurl.com");
-            Assert.AreEqual(_sendCode.RememberMe, false); ;
-            //Assert.AreEqual(_sendCode.Providers.Contains(new SelectListItem()), true);
+            Assert.AreEqual(_sendCode.RememberMe, false);
         }
 
         [Test]
