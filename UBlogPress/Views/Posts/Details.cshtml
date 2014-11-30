@@ -15,7 +15,7 @@
     <div class="post_content">
         @Model.ContentPost
     </div>
-  </div>
+</div>
 @foreach (var tag in Model.Tags)
 {
     <span>@tag.Name</span>
@@ -28,7 +28,7 @@
     }
     else
     {
-        <div align ="center">
+        <div align="center">
             <form action="/Posts/Details" method="post" class="input-group new_comment">
                 <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
                 <input type="hidden" name="userid" value=@Model.Blog.User.Id>
@@ -36,7 +36,7 @@
                 <button type="submit" class="form-control btn btn-default submit_comment">Submit Comment</button>
             </form>
         </div>
-        <div align ="center">
+        <div align="center">
             <form action="/Search/SearchUser" method="post">
 
                 <input type="hidden" name="NameDisplay" value="@Model.Blog.User.NameDisplay" />
@@ -45,16 +45,16 @@
         </div>
 
 
-        foreach (var comment in Model.Comments)
+        foreach (var comment in Model.Comments.OrderBy(comment => comment.DtCreated))
         {
 
-        <div class="comment" align="center">
-            <h3>Comment by @comment.NameDisplay</h3>
-            <h4>On @comment.DtCreated</h4>    
-            <p>@comment.Content</p>
-        </div>
-    }
-    
+            <div class="comment" align="center">
+                <h3>Comment by @comment.NameDisplay</h3>
+                <h4>On @comment.DtCreated</h4>
+                <p>@comment.Content</p>
+            </div>
+        }
+
 
 
     }
