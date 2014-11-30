@@ -45,7 +45,7 @@
         </div>
 
 
-        foreach (var comment in Model.Comments)
+        foreach (var comment in Model.Comments.OrderBy(comment => comment.DtCreated))
         {
 
             <div class="comment" align="center">
