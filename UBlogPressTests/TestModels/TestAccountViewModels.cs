@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using UBlogPress.Models;
 using Assert = NUnit.Framework.Assert;
@@ -21,7 +24,6 @@ namespace UBlogPress.Test.TestModels
         [SetUp] 
         public void Init()
         {
-
             _externalLoginConfirmation = new ExternalLoginConfirmationViewModel()
             {
                 Email = "paulmccartney@beatles.com"
@@ -36,8 +38,12 @@ namespace UBlogPress.Test.TestModels
             {
                 SelectedProvider = "provider",
                 ReturnUrl = "returnurl.com",
-                RememberMe = false,
-                //Providers = ICollection<System.Web.Mvc.SelectListItem> 
+                RememberMe = false
+            };
+
+            _sendCode.Providers = new ICollection<System.Web.Mvc.SelectListItem>
+            {
+                new SelectListItem()
             };
 
             _verifyCode = new VerifyCodeViewModel()
@@ -89,29 +95,28 @@ namespace UBlogPress.Test.TestModels
 
         }
 
-        [TestFixture]
+        [TestMethod]
         public void ExternalLoginConfirmationTest()
         {
             Assert.AreEqual(_externalLoginConfirmation.Email, "paulmccartney@beatles.com");
         }
 
-        [TestFixture]
+        [TestMethod]
         public void ExternalLoginListTest()
         {
             Assert.AreEqual(_externalLoginList.ReturnUrl, "google.com");
         }
 
-        [TestFixture]
+        [TestMethod]
         public void SendCodeTest()
         {
             Assert.AreEqual(_sendCode.SelectedProvider, "provider");
             Assert.AreEqual(_sendCode.ReturnUrl, "returnurl.com");
             Assert.AreEqual(_sendCode.RememberMe, false); ;
-           
-            //Providers = ICollection<System.Web.Mvc.SelectListItem> 
+            Assert.AreEqual(_sendCode.Providers.Contains(new SelectListItem()), true);
         }
 
-        [TestFixture]
+        [TestMethod]
         public void VerifyCodeTest()
         {
             Assert.AreEqual(_verifyCode.Provider, "prov");
@@ -121,13 +126,13 @@ namespace UBlogPress.Test.TestModels
             Assert.AreEqual(_verifyCode.RememberMe, true);
         }
 
-        [TestFixture]
+        [TestMethod]
         public void ForgotTest()
         {
             Assert.AreEqual(_forgot.Email, "benjaminfranklin@gmail.com");
         }
 
-        [TestFixture]
+        [TestMethod]
         public void LoginTest()
         {
             Assert.AreEqual(_login.Email, "larrypage@gmail.com");
@@ -135,7 +140,7 @@ namespace UBlogPress.Test.TestModels
             Assert.AreEqual(_login.RememberMe, false);
         }
 
-        [TextFixture]
+        [TestMethod]
         public void RegisterTest()
         {
             Assert.AreEqual(_register.Email,"psh@gmail.com");

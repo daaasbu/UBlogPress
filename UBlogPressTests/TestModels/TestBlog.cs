@@ -6,7 +6,7 @@ using Assert = NUnit.Framework.Assert;
 
 namespace UBlogPress.Test.TestModels
 {
-    [TestFixture]
+    [TestClass]
     public class TestBlog
     {
         private Blog _blog;

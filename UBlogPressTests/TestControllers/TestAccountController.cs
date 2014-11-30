@@ -6,9 +6,29 @@ using Assert = NUnit.Framework.Assert;
 
 namespace UBlogPress.Test.TestControllers
 {
-    [TestFixture]
+    [TestClass]
     public class TestAccountController
     {
         private AccountController _accountController;
-    }
+
+        [SetUp]
+        public void Init()
+        {
+            _accountController = new AccountController();
+        }
+
+        [TestMethod]
+        public void TestLoginSuccess()
+        {
+            
+        }
+
+        [TestMethod]
+        public void TestLoginFailure()
+        {
+            
+        }
+       
+    ]
+}
 }

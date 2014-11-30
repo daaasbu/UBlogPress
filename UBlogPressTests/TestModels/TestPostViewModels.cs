@@ -5,7 +5,7 @@ using Assert = NUnit.Framework.Assert;
 
 namespace UBlogPress.Test.TestModels
 {
-    [TestFixture]
+    [TestClass]
     public class TestPostViewModels
     {
         private PostViewModel _postViewModel;

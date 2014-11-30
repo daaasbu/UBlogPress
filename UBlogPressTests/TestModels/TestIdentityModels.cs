@@ -1,11 +1,12 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using UBlogPress.Models;
 using Assert = NUnit.Framework.Assert;
 
 namespace UBlogPress.Test.TestModels
 {
-    [TestFixture]
+    [TestClass]
     public class TestIdentityModels
     {
         private ApplicationUser _applicationUser;
