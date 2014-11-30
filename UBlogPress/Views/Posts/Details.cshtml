@@ -11,6 +11,7 @@
 
 @if (User.Identity.Name != null)
 {
+    
 
     <div class="post">
         <h1 class="post_title">@Model.Title</h1>
@@ -36,7 +37,9 @@
         }
         else
         {
+            <span class="error">@ViewBag.StatusMessage</span>
             <div align="center">
+                
                 <form action="/Posts/Details" method="post" class="input-group new_comment">
                     <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
                     <input type="hidden" name="userid" value=@Model.Blog.User.Id>

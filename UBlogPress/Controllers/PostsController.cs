@@ -64,6 +64,11 @@ namespace UBlogPress.Controllers
             var p = db.Posts.First(post => post.Id == pid);
             if (u != null)
             {
+                if (content == null || content.Trim() == "" || content == "" || content.Trim() == null)
+                {
+                    ViewBag.StatusMessage = "Please write a comment before submiting";
+                    return View(p);
+                }
                 
                 var comment = new Comment { ApplicationUserId = u.Id, Content = content, DtCreated = DateTime.Now, NameDisplay = u.NameDisplay, Post = p, PostId = p.Id };
                 db.Comments.Add(comment);
