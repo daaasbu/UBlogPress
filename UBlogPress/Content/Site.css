@@ -131,6 +131,11 @@ textarea {
     font-size: 1em;
 }
 
+.tag {
+    padding: 2px;
+    background-color: #E5E5E5;
+}
+
 .view_comments_button {
     margin-left: 5px;
 }
