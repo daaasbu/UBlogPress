@@ -9,16 +9,22 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using UBlogPress.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace UBlogPress.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db;
+        private UserManager<ApplicationUser> manager;
+
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
+            db = new ApplicationDbContext();
+            manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -157,6 +163,21 @@ namespace UBlogPress.Controllers
         {
             if (ModelState.IsValid)
             {
+                var sameBlogName = db.Users.Any(u => u.NameBlog == model.NameBlog);
+                var sameUserName = db.Users.Any(u => u.NameDisplay == model.NameDisplay);
+
+                if (sameBlogName)
+                {
+                    ModelState.AddModelError("", "Blog name already taken");
+                    return View(model);
+                }
+
+                if (sameUserName)
+                {
+                    ModelState.AddModelError("", "User name already taken");
+                    return View(model);
+                }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, NameFirst = model.NameFirst, NameMiddle = model.NameMiddle, NameLast = model.NameLast, Birthday = model.Birthday, NameDisplay = model.NameDisplay, NameBlog = model.NameBlog, DtCreated = System.DateTime.Now, DtUpdated = System.DateTime.Now, Role = "User" };
                 //instantiates the users blogs, and stores in the blog field.
                 var blog = new Blog { Name = user.NameBlog, ApplicationUserId = user.Id, DtCreated = DateTime.Now, DtUpdated = DateTime.Now, IsPublished = true, User = user, OffsetTmz = DateTimeOffset.Now, TemplateChoice = 1 };
