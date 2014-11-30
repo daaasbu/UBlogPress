@@ -66,7 +66,7 @@ namespace UBlogPress.Controllers
             {
                 if (content == null || content.Trim() == "" || content == "" || content.Trim() == null)
                 {
-                    ViewBag.StatusMessage = "Please write a comment before submiting";
+                    ViewBag.StatusMessage = "Please write a comment before submitting";
                     return View(p);
                 }
                 

@@ -39,17 +39,21 @@ namespace UBlogPress.Controllers
         }
 
          [AcceptVerbs(HttpVerbs.Post)]
-        public async Task<ActionResult> Index(string Name,string postid)
+        public async Task<ActionResult> Index(string name,string postid)
         {
             var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
             if (currentUser == null)
             {
                 return View();
             }
+            else if (name == null || name.Trim() == "" || name == "")
+            {
+                return View(currentUser);
+            }
             else
             {
                 var post = db.Posts.Find(Convert.ToInt32(postid));
-                var tag = new Tag {Post=post,PostId=post.Id,Name=Name};
+                var tag = new Tag {Post=post,PostId=post.Id,Name=name};
                 db.Tags.Add(tag);
                 db.SaveChanges();
                 await db.SaveChangesAsync();
