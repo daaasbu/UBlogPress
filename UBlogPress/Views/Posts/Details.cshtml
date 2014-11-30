@@ -1,62 +1,130 @@
 ﻿@using UBlogPress.Models
 @using UBlogPress.Controllers
-
+@using Microsoft.AspNet.Identity
 @model UBlogPress.Models.Post
-
 
 
 @{
     ViewBag.Title = "Details";
 }
 
-<div class="post">
-    <h1 class="post_title">@Model.Title</h1>
-    <h2 class="post_date">@Model.DtUpdated</h2>
-    <div class="post_content">
-        @Model.ContentPost
-    </div>
-</div>
-@foreach (var tag in Model.Tags)
+@if (User.Identity.Name != null)
 {
-    <span>@tag.Name</span>
-}
-
-<div id="comments_section">
-    @if (Model.Comments == null)
+    <div class="post">
+        <h1 class="post_title">@Model.Title</h1>
+        <h2 class="post_date">@Model.DtUpdated</h2>
+        <div class="post_content">
+            @Model.ContentPost
+        </div>
+    </div>
+    foreach (var tag in Model.Tags)
     {
-        <span>No Comments</span>
+        <span>@tag.Name</span>
     }
-    else
-    {
-        <div align="center">
-            <form action="/Posts/Details" method="post" class="input-group new_comment">
-                <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
-                <input type="hidden" name="userid" value=@Model.Blog.User.Id>
-                <input type="hidden" name="postid" value=@Model.Id>
-                <button type="submit" class="form-control btn btn-default submit_comment">Submit Comment</button>
-            </form>
-        </div>
-        <div align="center">
-            <form action="/Search/SearchUser" method="post">
 
-                <input type="hidden" name="NameDisplay" value="@Model.Blog.User.NameDisplay" />
-                <input class="btn" type="submit" value="See all posts by @Model.Blog.User.NameDisplay" />
-            </form>
-        </div>
-
-
-        foreach (var comment in Model.Comments.OrderBy(comment => comment.DtCreated))
+    <div id="comments_section">
+        @if (Model.Comments == null)
         {
-
-            <div class="comment" align="center">
-                <h3>Comment by @comment.NameDisplay</h3>
-                <h4>On @comment.DtCreated</h4>
-                <p>@comment.Content</p>
-            </div>
+            <span>No Comments</span>
         }
+        else
+        {
+            <div align="center">
+                <form action="/Posts/Details" method="post" class="input-group new_comment">
+                    <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
+                    <input type="hidden" name="userid" value=@Model.Blog.User.Id>
+                    <input type="hidden" name="postid" value=@Model.Id>
+                    <button type="submit" class="form-control btn btn-default submit_comment">Submit Comment</button>
+                </form>
+            </div>
+            <div align="center">
+                <form action="/Search/SearchUser" method="post">
+
+                    <input type="hidden" name="NameDisplay" value="@Model.Blog.User.NameDisplay" />
+                    <input class="btn" type="submit" value="See all posts by @Model.Blog.User.NameDisplay" />
+                </form>
+            </div>
+
+
+            foreach (var comment in Model.Comments.OrderBy(comment => comment.DtCreated))
+            {
+
+                <div class="comment" align="center">
+                    <h3>Comment by @comment.NameDisplay</h3>
+                    <h4>On @comment.DtCreated</h4>
+                    <p>@comment.Content</p>
+                    <span>
+                        @if (comment.Post.Blog.ApplicationUserId == User.Identity.GetUserId())
+                    {
+                        @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.Id }, null)
+                    }
+                    else
+                    {
+
+                    }
+                                  </span>
+                </div>
+            }
 
 
 
+        }
+    </div>
+}
+else
+{
+
+    <div class="post">
+        <h1 class="post_title">@Model.Title</h1>
+        <h2 class="post_date">@Model.DtUpdated</h2>
+        <div class="post_content">
+            @Model.ContentPost
+        </div>
+    </div>
+    foreach (var tag in Model.Tags)
+    {
+        <span>@tag.Name</span>
     }
-</div>
+
+    <div id="comments_section">
+        @if (Model.Comments == null)
+        {
+            <span>No Comments</span>
+        }
+        else
+        {
+            <div align="center">
+                <form action="/Posts/Details" method="post" class="input-group new_comment">
+                    <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
+                    <input type="hidden" name="userid" value=@Model.Blog.User.Id>
+                    <input type="hidden" name="postid" value=@Model.Id>
+                    <button type="submit" class="form-control btn btn-default submit_comment">Submit Comment</button>
+                </form>
+            </div>
+            <div align="center">
+                <form action="/Search/SearchUser" method="post">
+
+                    <input type="hidden" name="NameDisplay" value="@Model.Blog.User.NameDisplay" />
+                    <input class="btn" type="submit" value="See all posts by @Model.Blog.User.NameDisplay" />
+                </form>
+            </div>
+
+
+            foreach (var comment in Model.Comments.OrderBy(comment => comment.DtCreated))
+            {
+
+                <div class="comment" align="center">
+                    <h3>Comment by @comment.NameDisplay</h3>
+                    <h4>On @comment.DtCreated</h4>
+                    <p>@comment.Content</p>
+
+                </div>
+            }
+
+
+
+        }
+    </div>
+
+}
 
