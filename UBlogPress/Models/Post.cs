@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+
 
 namespace UBlogPress.Models
 {
@@ -12,7 +14,9 @@ namespace UBlogPress.Models
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         public string ContentPost { get; set; }
+        
   //      public string ExceptPost { get; set; }
         public Boolean Published { get; set; }
   
