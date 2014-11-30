@@ -145,18 +145,35 @@ namespace UBlogPress.Controllers
         {
             var blog = db.Blogs.Find(post.BlogId);
             var p = db.Posts.Find(post.Id);
-            var tags = p.Tags;
-            var comments = p.Comments;
+            
+            ICollection<Comment> comments = new List<Comment>();
+            ICollection<Tag> tags = new List<Tag>();
 
+            foreach (var comment in p.Comments)
+            {
+
+                comments.Add(comment);
+            }
+
+            foreach (var tag in p.Tags)
+            {
+
+                tags.Add(tag);
+            }
+        
+            
+              post.Blog = blog;
+             post.Tags = tags;
             post.Comments = comments;
-            post.Blog = blog;
-            post.Tags = tags;
             post.DtUpdated = DateTime.Now;
             if (post.Title != "" && post.ContentPost != "")
             {
                 db.Posts.Remove(p);
+                db.SaveChanges();
                 db.Posts.Add(post);
-                //db.Entry(post).State = EntityState.Modified;
+     
+                
+           //     db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index","Home");
             }

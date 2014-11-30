@@ -26,11 +26,12 @@ else
                 <div class="post_content">
                     @post.ContentPost
                 </div>
-
+                <div>
                 @foreach (var tag in post.Tags)
                 {
-                    <span>@tag.Name</span>
+                    <span class="tag">@tag.Name</span>
                 }
+                </div>
                 @if (post.EnabledComment)
                 {
                     <div>

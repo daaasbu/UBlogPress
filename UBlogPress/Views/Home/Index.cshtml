@@ -27,9 +27,10 @@
             </div>
 
             <div>
+                Tags:
                 @foreach (var tag in post.Tags)
                 {
-                    <span>@tag.Name</span>
+                    <span class="tag">@tag.Name</span>
                 }
                 <form method="post">
                     <textarea name="Name" id="NewTagContent" rows="1" cols="10" placeholder="Enter tag" class="form-control"></textarea>
