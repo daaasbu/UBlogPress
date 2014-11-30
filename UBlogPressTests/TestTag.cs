@@ -11,12 +11,12 @@ namespace UBlogPress.Test
     [TestFixture]
     public class TestTag
     {
-        private Tag t;
+        private Tag _tag;
 
         [SetUp]
         public void Init()
         {
-            t = new Tag()
+            _tag = new Tag()
             {
                 Id = 123,
                 Name = "programming",
@@ -27,19 +27,19 @@ namespace UBlogPress.Test
         [TestMethod]
         public void IdTest()
         {
-            Assert.AreEqual(t.Id, 123);
+            Assert.AreEqual(_tag.Id, 123);
         }
 
         [TestMethod]
         public void NameTest()
         {
-            Assert.AreEqual(t.Name, "programming");
+            Assert.AreEqual(_tag.Name, "programming");
         }
 
         [TestMethod]
         public void PostIdTest()
         {
-            Assert.AreEqual(t.PostId, 456);
+            Assert.AreEqual(_tag.PostId, 456);
         }
     }
 }

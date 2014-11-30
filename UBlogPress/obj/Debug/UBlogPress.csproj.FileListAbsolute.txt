@@ -334,3 +334,6 @@ C:\Users\AdamP\Desktop\Classes\Software development\UBlogPress\UBlogPress\obj\De
 C:\Users\Robert\Source\Repos\UBlogPress\UBlogPress\bin\AutoMapper.Net4.dll
 C:\Users\Robert\Source\Repos\UBlogPress\UBlogPress\bin\AutoMapper.dll
 C:\Users\Robert\Source\Repos\UBlogPress\UBlogPress\bin\AutoMapper.xml
+C:\Users\colonelchibbers\Desktop\UBlogPress\UBlogPress\bin\AutoMapper.dll
+C:\Users\colonelchibbers\Desktop\UBlogPress\UBlogPress\bin\AutoMapper.Net4.dll
+C:\Users\colonelchibbers\Desktop\UBlogPress\UBlogPress\bin\AutoMapper.xml

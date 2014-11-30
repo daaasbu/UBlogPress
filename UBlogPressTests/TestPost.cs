@@ -11,12 +11,12 @@ namespace UBlogPress.Test
     [TestFixture]
     public class TestPost
     {
-        private Post p;
+        private Post _post;
 
         [SetUp] 
         public void Init()
         {
-            p = new Post()
+            _post = new Post()
             {
                 Id = 123,
                 Title = "Post1",
@@ -32,49 +32,49 @@ namespace UBlogPress.Test
         [TestMethod]
         public void IdTest()
         {
-            Assert.AreEqual(p.Id, 123);
+            Assert.AreEqual(_post.Id, 123);
         }
 
         [TestMethod]
         public void TitleTest()
         {
-            Assert.AreEqual(p.Title, "Post1");
+            Assert.AreEqual(_post.Title, "Post1");
         }
 
         [TestMethod]
         public void ContentPostTest()
         {
-            Assert.AreEqual(p.ContentPost, "SomeContent");
+            Assert.AreEqual(_post.ContentPost, "SomeContent");
         }
 
         [TestMethod]
         public void PublishedTest()
         {
-            Assert.AreEqual(p.Published, true);
+            Assert.AreEqual(_post.Published, true);
         }
 
         [TestMethod]
         public void DtCreatedTest()
         {
-            Assert.AreEqual(p.DtCreated, new DateTime(2014, 2, 3));
+            Assert.AreEqual(_post.DtCreated, new DateTime(2014, 2, 3));
         }
 
         [TestMethod]
         public void DtUpdatedTest()
         {
-            Assert.AreEqual(p.DtUpdated, new DateTime(2014, 11, 26));
+            Assert.AreEqual(_post.DtUpdated, new DateTime(2014, 11, 26));
         }
 
         [TestMethod]
         public void EnabledCommentTest()
         {
-            Assert.AreEqual(p.EnabledComment, false);
+            Assert.AreEqual(_post.EnabledComment, false);
         }
 
         [TestMethod]
         public void BlogIdTest()
         {
-            Assert.AreEqual(p.BlogId, 456);
+            Assert.AreEqual(_post.BlogId, 456);
         }
     }
 }

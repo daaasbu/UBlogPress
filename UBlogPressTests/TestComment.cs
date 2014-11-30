@@ -11,12 +11,12 @@ namespace UBlogPress.Test
     [TestFixture]
     public class TestComment
     {
-        private Comment c;
+        private Comment _comment;
 
         [SetUp]
         public void Init()
         {
-            c = new Comment()
+            _comment = new Comment()
             {
                 Id = 123,
                 Content = "SomeContent",
@@ -30,37 +30,37 @@ namespace UBlogPress.Test
         [TestMethod]
         public void IdTest()
         {
-            Assert.AreEqual(c.Id, 123);
+            Assert.AreEqual(_comment.Id, 123);
         }
 
         [TestMethod]
         public void ContentTest()
         {
-            Assert.AreEqual(c.Content, "SomeContent");
+            Assert.AreEqual(_comment.Content, "SomeContent");
         }
 
         [TestMethod]
         public void DtCreatedTest()
         {
-            Assert.AreEqual(c.DtCreated, new DateTime(2014, 2, 3));
+            Assert.AreEqual(_comment.DtCreated, new DateTime(2014, 2, 3));
         }
 
         [TestMethod]
         public void NameDisplayTest()
         {
-            Assert.AreEqual(c.NameDisplay, "name");
+            Assert.AreEqual(_comment.NameDisplay, "name");
         }
 
         [TestMethod]
         public void ApplicationUserIdTest()
         {
-            Assert.AreEqual(c.ApplicationUserId, "456");
+            Assert.AreEqual(_comment.ApplicationUserId, "456");
         }
 
         [TestMethod]
         public void PostIdTest()
         {
-            Assert.AreEqual(c.PostId, 789);
+            Assert.AreEqual(_comment.PostId, 789);
         }
     }
 }
