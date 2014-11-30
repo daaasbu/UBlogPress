@@ -17,18 +17,18 @@ namespace UBlogPress.Test.TestControllers
             _accountController = new AccountController();
         }
 
-        [TestMethod]
+        [Test]
         public void TestLoginSuccess()
         {
             
         }
 
-        [TestMethod]
+        [Test]
         public void TestLoginFailure()
         {
             
         }
        
-    ]
-}
+    
+    }
 }

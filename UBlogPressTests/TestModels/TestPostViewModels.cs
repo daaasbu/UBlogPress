@@ -22,7 +22,7 @@ namespace UBlogPress.Test.TestModels
             };
         }
 
-        [TestMethod]
+        [Test]
         public void PostViewModelTest()
         {
             Assert.AreEqual(_postViewModel.Title, "title");

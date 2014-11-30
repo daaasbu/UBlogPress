@@ -27,49 +27,49 @@ namespace UBlogPress.Test.TestModels
             };
         }
 
-        [TestMethod]
+        [Test]
         public void IdTest()
         {
             Assert.AreEqual(_post.Id, 123);
         }
 
-        [TestMethod]
+        [Test]
         public void TitleTest()
         {
             Assert.AreEqual(_post.Title, "Post1");
         }
 
-        [TestMethod]
+        [Test]
         public void ContentPostTest()
         {
             Assert.AreEqual(_post.ContentPost, "SomeContent");
         }
 
-        [TestMethod]
+        [Test]
         public void PublishedTest()
         {
             Assert.AreEqual(_post.Published, true);
         }
 
-        [TestMethod]
+        [Test]
         public void DtCreatedTest()
         {
             Assert.AreEqual(_post.DtCreated, new DateTime(2014, 2, 3));
         }
 
-        [TestMethod]
+        [Test]
         public void DtUpdatedTest()
         {
             Assert.AreEqual(_post.DtUpdated, new DateTime(2014, 11, 26));
         }
 
-        [TestMethod]
+        [Test]
         public void EnabledCommentTest()
         {
             Assert.AreEqual(_post.EnabledComment, false);
         }
 
-        [TestMethod]
+        [Test]
         public void BlogIdTest()
         {
             Assert.AreEqual(_post.BlogId, 456);

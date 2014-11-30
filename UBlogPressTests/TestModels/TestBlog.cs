@@ -6,7 +6,7 @@ using Assert = NUnit.Framework.Assert;
 
 namespace UBlogPress.Test.TestModels
 {
-    [TestClass]
+    [TestFixture]
     public class TestBlog
     {
         private Blog _blog;
@@ -18,7 +18,7 @@ namespace UBlogPress.Test.TestModels
             {
                 Id = 123,
                 Name = "Marty McFly",
-                OffsetTmz = new DateTimeOffset(1985,10,26,1,21,0,new TimeSpan(10,5,3,1)),
+                OffsetTmz = new DateTimeOffset(1985,10,26,1,21,0,new TimeSpan(-6,0,0)),
                 ApplicationUserId = "1776",
                 IsPublished = true,
                 DtCreated = new DateTime(2014, 2, 3),
@@ -26,46 +26,46 @@ namespace UBlogPress.Test.TestModels
             };
         }
 
-        [TestMethod]
+        [Test]
         public void IdTest()
         {
             Assert.AreEqual(_blog.Id, 123);
         }
 
-        [TestMethod]
+        [Test]
         public void NameTest()
         {
             Assert.AreEqual(_blog.Name, "Marty McFly");
         }
 
-        [TestMethod]
+        [Test]
         public void OffsetTmzTest()
         {
-            Assert.AreEqual(_blog.OffsetTmz, new DateTimeOffset(1985,10,26,1,21,0,new TimeSpan(10,5,3,1)));
+            Assert.AreEqual(_blog.OffsetTmz, new DateTimeOffset(1985,10,26,1,21,0,new TimeSpan(-6,0,0)));
         }
                
-        [TestMethod]
+        [Test]
         public void ApplicationUserIdTest()
         {
             Assert.AreEqual(_blog.ApplicationUserId, "1776");
         }
 
-        [TestMethod]
+        [Test]
         public void IsPublishedTest()
         {
             Assert.AreEqual(_blog.IsPublished, true);
         }
 
-        [TestMethod]
+        [Test]
         public void DtCreatedTest()
         {
             Assert.AreEqual(_blog.DtCreated, new DateTime(2014, 2, 3));
         }
 
-        [TestMethod]
+        [Test]
         public void DtUpdatedTest()
         {
-            Assert.AreEqual(_blog.DtCreated, new DateTime(2014, 11, 26));
+            Assert.AreEqual(_blog.DtUpdated, new DateTime(2014, 11, 26));
         } 
     }
 }

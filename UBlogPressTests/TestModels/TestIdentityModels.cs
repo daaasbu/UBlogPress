@@ -24,10 +24,10 @@ namespace UBlogPress.Test.TestModels
                 NameDisplay = "Phil",
                 NameBlog = "lifehacker",
                 Email = "psh@gmail.com",
-                DtCreated = new DateTime(2014,10,1);
-                DtUpdated = new DateTime(2014,1,30);
-                Birthday = new DateTime(1991, 7, 21);
-                BlogId = 123;
+                DtCreated = new DateTime(2014,10,1),
+                DtUpdated = new DateTime(2014,1,30),
+                Birthday = new DateTime(1991, 7, 21),
+                BlogId = 123
                 // public virtual Blog Blog { get; set; }
             };
 
@@ -51,7 +51,7 @@ namespace UBlogPress.Test.TestModels
         //public DbSet<Tag> Tags { get; set; }
         }
 
-        [TestFixture]
+        [Test]
         public void ApplicationUserTest()
         {
             Assert.AreEqual(_applicationUser.NameLast, "Hoffman");

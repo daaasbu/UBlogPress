@@ -23,10 +23,10 @@ namespace UBlogPress.Test.TestModels
         {
             _index = new IndexViewModel()
             {
-                HasPassword = false;
+                HasPassword = false,
                 //public IList<UserLoginInfo> Logins { get; set; }
-                TwoFactor = true;
-                BrowserRemembered = true;
+                TwoFactor = true,
+                BrowserRemembered = true
             };
 
             _manageLogins = new ManageLoginsViewModel()
@@ -78,7 +78,7 @@ namespace UBlogPress.Test.TestModels
 
         }
 
-        [TestMethod]
+        [Test]
         public void IndexViewModelTest()
         {
             Assert.AreEqual(_index.HasPassword, false);
@@ -86,27 +86,27 @@ namespace UBlogPress.Test.TestModels
             Assert.AreEqual(_index.BrowserRemembered, true);
         }
 
-        [TestMethod]
+        [Test]
         public void ManageLoginsViewModelTest()
         {
             //public IList<UserLoginInfo> CurrentLogins { get; set; }
             //public IList<AuthenticationDescription> OtherLogins { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void FactorViewModelTest()
         {
             Assert.AreEqual(_factor.Purpose, "purpose");
         }
 
-        [TestMethod]
+        [Test]
         public void SetPasswordViewModelTest()
         {
             Assert.AreEqual(_setPassword.NewPassword, "password");
             Assert.AreEqual(_setPassword.ConfirmPassword, "password");
         }
 
-        [TestMethod]
+        [Test]
         public void ChangePasswordViewModelTest()
         {
             Assert.AreEqual(_changePassword.OldPassword, "password1");
@@ -114,26 +114,26 @@ namespace UBlogPress.Test.TestModels
             Assert.AreEqual(_changePassword.ConfirmPassword, "password2");
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeEmailViewModelTest()
         {
             Assert.AreNotEqual(_changeEmail.NewEmail,_changeEmail.ConfirmEmail);
         }
 
-        [TestMethod]
+        [Test]
         public void AddPhoneNumberViewModelTest()
         {
             Assert.AreEqual(_addPhoneNumber.Number, "867-5309");
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyPhoneNumberViewModelTest()
         {
             Assert.AreEqual(_verifyPhoneNumber.Code, "1234");
             Assert.AreEqual(_verifyPhoneNumber.PhoneNumber, "867-5309");
         }
 
-        [TestMethod]
+        [Test]
         public void ConfigureTwoFactorViewModelTest()
         {
             Assert.AreEqual(_configureTwoFactor.SelectedProvider, "selprov");

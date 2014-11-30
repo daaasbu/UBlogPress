@@ -21,19 +21,19 @@ namespace UBlogPress.Test.TestModels
             };
         }
 
-        [TestMethod]
+        [Test]
         public void IdTest()
         {
             Assert.AreEqual(_tag.Id, 123);
         }
 
-        [TestMethod]
+        [Test]
         public void NameTest()
         {
             Assert.AreEqual(_tag.Name, "programming");
         }
 
-        [TestMethod]
+        [Test]
         public void PostIdTest()
         {
             Assert.AreEqual(_tag.PostId, 456);

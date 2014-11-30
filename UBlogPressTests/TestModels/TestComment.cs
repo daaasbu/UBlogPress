@@ -9,7 +9,7 @@ namespace UBlogPress.Test.TestModels
     [TestClass]
     public class TestComment
     {
-        private Comment _comment;
+        public Comment _comment;
 
         [SetUp]
         public void Init()
@@ -25,37 +25,37 @@ namespace UBlogPress.Test.TestModels
             };
         }
 
-        [TestMethod]
+        [Test]
         public void IdTest()
         {
             Assert.AreEqual(_comment.Id, 123);
         }
 
-        [TestMethod]
+        [Test]
         public void ContentTest()
         {
             Assert.AreEqual(_comment.Content, "SomeContent");
         }
 
-        [TestMethod]
+        [Test]
         public void DtCreatedTest()
         {
             Assert.AreEqual(_comment.DtCreated, new DateTime(2014, 2, 3));
         }
 
-        [TestMethod]
+        [Test]
         public void NameDisplayTest()
         {
             Assert.AreEqual(_comment.NameDisplay, "name");
         }
 
-        [TestMethod]
+        [Test]
         public void ApplicationUserIdTest()
         {
             Assert.AreEqual(_comment.ApplicationUserId, "456");
         }
 
-        [TestMethod]
+        [Test]
         public void PostIdTest()
         {
             Assert.AreEqual(_comment.PostId, 789);

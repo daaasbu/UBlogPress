@@ -22,7 +22,7 @@ namespace UBlogPress.Test.TestModels
             };
         }
 
-        [TestMethod]
+        [Test]
         public void SearchUserModelTest()
         {
             Assert.AreEqual(_searchUser.NameDisplay, "Bigfoot");
