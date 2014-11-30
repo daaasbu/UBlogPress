@@ -76,7 +76,7 @@ namespace UBlogPress.Models
     public class ChangeBlognameViewModel
     {
         [Required]
-        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         [Display(Name = "New Blogname")]
         public string NewBlogname { get; set; }
 

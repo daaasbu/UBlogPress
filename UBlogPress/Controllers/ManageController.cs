@@ -330,6 +330,17 @@ namespace UBlogPress.Controllers
              if (ModelState.IsValid)
              {
                  var u = await manager.FindByIdAsync(User.Identity.GetUserId());
+
+                 var sameUserName = db.Users.Any(user => user.UserName == model.NewEmail);
+
+                 if (sameUserName)
+                 {
+                     ModelState.AddModelError("", "Email already taken");
+                     return View(model);
+                 }
+
+
+
                  u.UserName = model.NewEmail;
                  u.Email = model.NewEmail;
                 
@@ -355,7 +366,17 @@ namespace UBlogPress.Controllers
              if (ModelState.IsValid)
              {
                  var u = await manager.FindByIdAsync(User.Identity.GetUserId());
+                
+                 var sameBlogName = db.Users.Any(user => user.NameBlog == model.NewBlogname);
+
+                 if (sameBlogName)
+                 {
+                     ModelState.AddModelError("", "Blog name already taken");
+                     return View(model);
+                 }
+
                  
+
 
 
                      u.NameBlog = model.NewBlogname;
