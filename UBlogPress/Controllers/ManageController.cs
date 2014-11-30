@@ -339,7 +339,37 @@ namespace UBlogPress.Controllers
                  return RedirectToAction("Index", "Home");
              }
              return View(model);
+         }
+
+
+
+         [AcceptVerbs(HttpVerbs.Get)]
+         public ActionResult ChangeBlogname()
+         {
+             return View();
+         }
+
+         [AcceptVerbs(HttpVerbs.Post)]
+         public async Task<ActionResult> ChangeBlogname(ChangeBlognameViewModel model)
+         {
+             if (ModelState.IsValid)
+             {
+                 var u = await manager.FindByIdAsync(User.Identity.GetUserId());
+                 
+
+
+                     u.NameBlog = model.NewBlogname;
+                     u.Blog.Name = model.NewBlogname;
+                 db.Entry(u).State = EntityState.Modified;
+                 await db.SaveChangesAsync();
+                // await db.SaveChangesAsync();
+               //  AuthenticationManager.SignOut();
+                 return RedirectToAction("Index", "Home");
+             }
+             return View(model);
          }   
+
+
        
 
           [AcceptVerbs(HttpVerbs.Get)]

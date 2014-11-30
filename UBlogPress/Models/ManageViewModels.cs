@@ -72,6 +72,19 @@ namespace UBlogPress.Models
         public string ConfirmEmail { get; set; }
     }
 
+
+    public class ChangeBlognameViewModel
+    {
+        [Required]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
+        [Display(Name = "New Blogname")]
+        public string NewBlogname { get; set; }
+
+        [Display(Name = "Confirm new Blogname")]
+        [Compare("NewBlogname", ErrorMessage = "The new Blogname and confirmation Blogname do not match.")]
+        public string ConfirmBlogname { get; set; }
+    }
+
     public class AddPhoneNumberViewModel
     {
         [Required]
