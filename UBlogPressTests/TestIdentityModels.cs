@@ -7,12 +7,8 @@ using NUnit.Framework;
 using UBlogPress.Models;
 using Assert = NUnit.Framework.Assert;
 
-// Commit test 
-
 namespace UBlogPress.Test
 {
-
-
     [TestFixture]
     public class TestIdentityModels
     {
