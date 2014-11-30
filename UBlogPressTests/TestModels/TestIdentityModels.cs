@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
+using NUnit.Mocks;
 using UBlogPress.Models;
 using Assert = NUnit.Framework.Assert;
 
@@ -11,8 +14,8 @@ namespace UBlogPress.Test.TestModels
     {
         private ApplicationUser _applicationUser;
         private ApplicationDbContext _applicationDbContext;
-      
-        [SetUp] 
+
+        [SetUp]
         public void Init()
         {
             _applicationUser = new ApplicationUser()
@@ -24,30 +27,11 @@ namespace UBlogPress.Test.TestModels
                 NameDisplay = "Phil",
                 NameBlog = "lifehacker",
                 Email = "psh@gmail.com",
-                DtCreated = new DateTime(2014,10,1),
-                DtUpdated = new DateTime(2014,1,30),
+                DtCreated = new DateTime(2014, 10, 1),
+                DtUpdated = new DateTime(2014, 1, 30),
                 Birthday = new DateTime(1991, 7, 21),
                 BlogId = 123
             };
-
-
-            //            public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-            //{
-            //    // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            //    var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            //    // Add custom user claims here
-            //    return userIdentity;
-            //}
-
-            _applicationDbContext = ApplicationDbContext.Create();
-    
-
-
-            //ApplicationDbContext:
-        //public DbSet<Blog> Blogs { get; set; }
-        //public DbSet<Post> Posts { get; set; }
-        //public DbSet<Comment> Comments { get; set; }
-        //public DbSet<Tag> Tags { get; set; }
         }
 
         [Test]
@@ -60,12 +44,10 @@ namespace UBlogPress.Test.TestModels
             Assert.AreEqual(_applicationUser.NameDisplay, "Phil");
             Assert.AreEqual(_applicationUser.NameBlog, "lifehacer");
             Assert.AreEqual(_applicationUser.Email, "psh@gmail.com");
-            Assert.AreEqual(_applicationUser.DtCreated, new DateTime(2014,10,1));
-            Assert.AreEqual(_applicationUser.DtUpdated, new DateTime(2014,11,30));
+            Assert.AreEqual(_applicationUser.DtCreated, new DateTime(2014, 10, 1));
+            Assert.AreEqual(_applicationUser.DtUpdated, new DateTime(2014, 11, 30));
             Assert.AreEqual(_applicationUser.Birthday, new DateTime(1991, 7, 21));
             Assert.AreEqual(_applicationUser.BlogId, 123);
         }
-
-
     }
 }
