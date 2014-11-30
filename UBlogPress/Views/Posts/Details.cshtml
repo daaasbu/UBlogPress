@@ -16,10 +16,13 @@
         @Model.ContentPost
     </div>
 </div>
+
+<div>
 @foreach (var tag in Model.Tags)
 {
-    <span>@tag.Name</span>
+    <span class="tag">@tag.Name</span>
 }
+</div>
 
 <div id="comments_section">
     @if (Model.Comments == null)
