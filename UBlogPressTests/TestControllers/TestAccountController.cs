@@ -36,7 +36,7 @@ namespace UBlogPress.Test.TestControllers
                 NameLast = "Hoffman",
                 Birthday = new DateTime(1991, 7, 21)
             };
-            Task<ActionResult> task = _accountController.Register(register);
+            var task = _accountController.Register(register);
 
             var login = new LoginViewModel()
             {
@@ -44,7 +44,7 @@ namespace UBlogPress.Test.TestControllers
                 Password = "passwd",
                 RememberMe = false
             };
-            Task<ActionResult> result = _accountController.Login(login, "returnUrl.com");
+            var result = _accountController.Login(login, "returnUrl.com");
    
             Assert.IsNotNull(result, "Action result is null");
             Assert.IsInstanceOf(typeof (Task<ActionResult>), result, "Action result of wrong type");

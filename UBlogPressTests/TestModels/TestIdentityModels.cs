@@ -28,7 +28,7 @@ namespace UBlogPress.Test.TestModels
                 NameBlog = "lifehacker",
                 Email = "psh@gmail.com",
                 DtCreated = new DateTime(2014, 10, 1),
-                DtUpdated = new DateTime(2014, 1, 30),
+                DtUpdated = new DateTime(2014, 11, 30),
                 Birthday = new DateTime(1991, 7, 21),
                 BlogId = 123
             };
@@ -42,7 +42,7 @@ namespace UBlogPress.Test.TestModels
             Assert.AreEqual(_applicationUser.NameMiddle, "Seymour");
             Assert.AreEqual(_applicationUser.Role, "default");
             Assert.AreEqual(_applicationUser.NameDisplay, "Phil");
-            Assert.AreEqual(_applicationUser.NameBlog, "lifehacer");
+            Assert.AreEqual(_applicationUser.NameBlog, "lifehacker");
             Assert.AreEqual(_applicationUser.Email, "psh@gmail.com");
             Assert.AreEqual(_applicationUser.DtCreated, new DateTime(2014, 10, 1));
             Assert.AreEqual(_applicationUser.DtUpdated, new DateTime(2014, 11, 30));

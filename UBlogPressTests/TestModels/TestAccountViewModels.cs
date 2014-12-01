@@ -139,7 +139,7 @@ namespace UBlogPress.Test.TestModels
         {
             Assert.AreEqual(_register.Email,"psh@gmail.com");
             Assert.AreEqual(_register.NameDisplay, "Phil");
-            Assert.AreEqual(_register.NameBlog, "lifehacer");
+            Assert.AreEqual(_register.NameBlog, "lifehacker");
             Assert.AreEqual(_register.Password, "passwd");
             Assert.AreEqual(_register.ConfirmPassword, "passwd");
             Assert.AreEqual(_register.NameFirst, "Philip");
