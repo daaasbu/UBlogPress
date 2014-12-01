@@ -11,6 +11,9 @@
     {
         <div>You haven't created any posts yet. Click "Make Post" above to start blogging!</div>
     }
+
+    <span class="error">@ViewBag.StatusMessage</span>
+    
     foreach (var post in Model.Blog.Posts.OrderByDescending(post => post.DtUpdated))
     {
         <div class="post">

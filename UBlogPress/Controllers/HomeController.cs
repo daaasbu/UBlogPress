@@ -48,6 +48,7 @@ namespace UBlogPress.Controllers
             }
             else if (name == null || name.Trim() == "" || name == "")
             {
+                ViewBag.StatusMessage = "Please write a tag before submitting";
                 return View(currentUser);
             }
             else
@@ -58,6 +59,8 @@ namespace UBlogPress.Controllers
                 db.SaveChanges();
                 await db.SaveChangesAsync();
                 return View(currentUser);
+                
+               
             }
         }
 
