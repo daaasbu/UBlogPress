@@ -59,8 +59,6 @@ namespace UBlogPress.Controllers
                 db.SaveChanges();
                 await db.SaveChangesAsync();
                 return View(currentUser);
-                
-               
             }
         }
 

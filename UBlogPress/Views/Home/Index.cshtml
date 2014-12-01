@@ -36,9 +36,9 @@
                     <span class="tag">@tag.Name</span>
                 }
                 <form method="post">
-                    <textarea name="Name" id="NewTagContent" rows="1" cols="10" placeholder="Enter tag" class="form-control"></textarea>
+                    <textarea name="Name" id="NewTagContent" rows="1" cols="10" placeholder="Enter tag" class="form-control" style="padding:0%; width: 160px; height: 25px;"></textarea>
                     <input type="hidden" name="postid" value=@post.Id>
-                    <button type="submit" class="form-control btn btn-default submit_comment">Add Tag</button>
+                    <button type="submit" class="form-control btn btn-default submit_comment" style="padding:0%; text-align:center; width: 80px; height: 25px;">Add Tag</button>
                 </form>
                 @{
         var link = "/Posts/Details/" + post.Id;
