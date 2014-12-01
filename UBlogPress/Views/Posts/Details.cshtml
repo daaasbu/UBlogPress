@@ -38,16 +38,17 @@
         else
         {
             <span class="error">@ViewBag.StatusMessage</span>
-            <div align="center">
+            <br/>
+            <div align="left">
                 
                 <form action="/Posts/Details" method="post" class="input-group new_comment">
-                    <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
+                    <textarea name="Content" id="NewCommentContent" rows="3" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
                     <input type="hidden" name="userid" value=@Model.Blog.User.Id>
                     <input type="hidden" name="postid" value=@Model.Id>
                     <button type="submit" class="form-control btn btn-default submit_comment">Submit Comment</button>
                 </form>
             </div>
-            <div align="center">
+            <div align="left">
                 <form action="/Search/SearchUser" method="post">
 
                     <input type="hidden" name="NameDisplay" value="@Model.Blog.User.NameDisplay" />
@@ -59,9 +60,9 @@
             foreach (var comment in Model.Comments.OrderBy(comment => comment.DtCreated))
             {
 
-                <div class="comment" align="center">
-                    <h3>Comment by @comment.NameDisplay</h3>
-                    <h4>On @comment.DtCreated</h4>
+                <div class="comment" align="right">
+                    <h4>Comment by @comment.NameDisplay</h4>
+                    <h6>On @comment.DtCreated</h6>
                     <p>@comment.Content</p>
                     <span>
                       @{var b = comment.Post.Blog.ApplicationUserId.Equals(User.Identity.GetUserId());}
@@ -108,15 +109,16 @@ else
         }
         else
         {
-            <div align="center">
+            <br/>
+            <div align="left">
                 <form action="/Posts/Details" method="post" class="input-group new_comment">
-                    <textarea name="Content" id="NewCommentContent" rows="5" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
+                    <textarea name="Content" id="NewCommentContent" rows="3" cols="300" placeholder="Enter a comment here" class="form-control"></textarea>
                     <input type="hidden" name="userid" value=@Model.Blog.User.Id>
                     <input type="hidden" name="postid" value=@Model.Id>
                     <button type="submit" class="form-control btn btn-default submit_comment">Submit Comment</button>
                 </form>
             </div>
-            <div align="center">
+            <div align="left">
                 <form action="/Search/SearchUser" method="post">
 
                     <input type="hidden" name="NameDisplay" value="@Model.Blog.User.NameDisplay" />
@@ -128,9 +130,9 @@ else
             foreach (var comment in Model.Comments.OrderBy(comment => comment.DtCreated))
             {
 
-                <div class="comment" align="center">
-                    <h3>Comment by @comment.NameDisplay</h3>
-                    <h4>On @comment.DtCreated</h4>
+                <div class="comment" align="right">
+                    <h4>Comment by @comment.NameDisplay</h4>
+                    <h6>On @comment.DtCreated</h6>
                     <p>@comment.Content</p>
 
                 </div>
